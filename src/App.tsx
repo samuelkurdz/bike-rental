@@ -1,13 +1,19 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 
+import Login from './pages/login';
+import ManagerHome from './pages/manager-home';
+
 function App() {
-  const [count, setCount] = useState(0);
+  // let {  } = useMatch();
 
   return (
     <div className="App">
-      <p>Bike APp</p>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="users/*" element={<ManagerHome />} />
+      </Routes>
     </div>
   );
 }
