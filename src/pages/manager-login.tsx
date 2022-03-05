@@ -3,7 +3,7 @@ function ManagerLogin() {
 
   return (
     <div className="manager-home">
-      <p>manager</p>
+      <p>login</p>
     </div>
   );
 }

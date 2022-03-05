@@ -1,11 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-function UserApp() {
-  // let {  } = useMatch();
-
-  return (
-    <Outlet></Outlet>
-  );
+function RoutePgeOutlet() {
+  return <Outlet></Outlet>;
 }
 
-export default UserApp;
+export default RoutePgeOutlet;

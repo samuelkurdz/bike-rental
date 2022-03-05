@@ -1,19 +1,37 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { Link } from "react-router-dom";
-import { LoginUserPayload } from '../interfaces/user';
-
+import { Link, useNavigate } from "react-router-dom";
+import { LoginUserPayload } from "../interfaces/user";
+import { supabase } from "../supabaseClient";
 
 function LoginForm() {
-  const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({email: '', password: ''});
+  const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
+    email: "",
+    password: "",
+  });
+  let navigate = useNavigate();
 
-  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    SetLoginPayload({...loginPayload, [event.target.name]: event.target.value});
-  }
+  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    SetLoginPayload({
+      ...loginPayload,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    console.log(loginPayload);
-  }
+    supabase.auth
+      .signIn({ ...loginPayload })
+      .then((user) => {
+        // TODO {use user data to get user data, save to state and use on home page}
+        console.log(user);
+        navigate(`/app`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleLoginFormSubmit}>
