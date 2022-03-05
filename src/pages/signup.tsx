@@ -1,19 +1,55 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
-import { CreateUserPayload } from '../interfaces/user';
-
+import { CreateUserPayload } from "../interfaces/user";
+import { supabase } from "../supabaseClient";
 
 function SignupForm() {
-  const [newUser, SetNewUser] = useState<CreateUserPayload>({username: '', email: '', password: ''});
+  const [newUser, SetNewUser] = useState<CreateUserPayload>({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    doesUsernameExists();
+   console.log( supabase.auth.session());
+   console.log( supabase.auth);
+  }, []);
+
+  const doesUsernameExists = async () => {
+    const num = await supabase.from("profiles");
+    console.log(num)
+
+  };
 
   const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    SetNewUser({...newUser, [event.target.name]: event.target.value});
-  }
+    SetNewUser({ ...newUser, [event.target.name]: event.target.value });
+  };
 
-  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    console.log(newUser);
-  }
+    const res = await supabase.auth.signUp({
+      email: newUser.email,
+      password: newUser.password,
+    });
+    console.log(res);
+    const updates = {
+      username: newUser.username,
+      role: "manager",
+      email: newUser.email,
+      updated_at: new Date(),
+    };
+    const { data, error } = await supabase
+      .from("profiles")
+      .update(updates)
+      .eq("id", res?.user?.id);
+    console.log(data, error);
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleLoginFormSubmit}>
