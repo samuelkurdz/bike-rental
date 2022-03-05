@@ -1,4 +1,92 @@
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
+import { CreateUserPayload } from '../interfaces/user';
+
+
+function SignupForm() {
+  const [newUser, SetNewUser] = useState<CreateUserPayload>({username: '', email: '', password: ''});
+
+  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    SetNewUser({...newUser, [event.target.name]: event.target.value});
+  }
+
+  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    console.log(newUser);
+  }
+
+  return (
+    <form className="mt-8 space-y-6" onSubmit={handleLoginFormSubmit}>
+      <div className="space-y-5">
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            required
+            name="username"
+            type="text"
+            id="username"
+            autoComplete="username"
+            placeholder="Username"
+            value={newUser.username}
+            onChange={handleLoginFormChange}
+            className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          />
+        </div>
+        <div>
+          <label htmlFor="email-address">Email address</label>
+          <input
+            required
+            name="email"
+            type="email"
+            id="email-address"
+            autoComplete="email"
+            placeholder="Email address"
+            value={newUser.email}
+            onChange={handleLoginFormChange}
+            className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            required
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            autoComplete="current-password"
+            value={newUser.password}
+            onChange={handleLoginFormChange}
+            className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <div className="flex items-center"></div>
+
+        <div className="text-sm">
+          <Link
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+            to="/"
+          >
+            Already have an account?
+          </Link>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
+          Sign Up
+        </button>
+      </div>
+    </form>
+  );
+}
 
 function SignUp() {
   return (
@@ -12,60 +100,10 @@ function SignUp() {
               alt="Workflow"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              Create a new account
             </h2>
           </div>
-          <form className="mt-8 space-y-6">
-            <div className="space-y-5">
-              <div>
-                <label htmlFor="email-address">Email address</label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  // autoComplete="email"
-                  required
-                  className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  // autoComplete="current-password"
-                  required
-                  className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center"></div>
-
-              <div className="text-sm">
-                <Link
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                  to="/"
-                >
-                  Already have an account?
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
-                Sign in
-              </button>
-            </div>
-          </form>
+          <SignupForm />
         </div>
       </div>
     </>
