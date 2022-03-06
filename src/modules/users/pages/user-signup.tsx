@@ -5,9 +5,9 @@ import {
   useState,
 } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CreateUserPayload } from "../interfaces/user";
-import { users } from "../data";
 import { v4 as uuidv4 } from "uuid";
+import { users } from "../../../data";
+import { CreateUserPayload } from "../../../interfaces";
 
 function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
@@ -48,7 +48,7 @@ function SignupForm() {
 
     users.push({ ...newUser, bikes: [], id: uuidv4() });
     console.log(users);
-    navigate("/app/login");
+    navigate("login");
   };
 
   return (
@@ -104,7 +104,7 @@ function SignupForm() {
         <div className="text-sm">
           <Link
             className="font-medium text-indigo-600 hover:text-indigo-500"
-            to="/"
+            to="/login"
           >
             Already have an account?
           </Link>

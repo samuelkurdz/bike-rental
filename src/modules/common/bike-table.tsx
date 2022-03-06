@@ -1,4 +1,5 @@
-import { Bike } from "../interfaces";
+import { Bike } from "../../interfaces";
+
 
 interface BikeTableProps {
   bikes: Bike[];

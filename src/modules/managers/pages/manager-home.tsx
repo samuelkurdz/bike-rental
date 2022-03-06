@@ -11,7 +11,7 @@ function ManagerHome() {
     console.log(loggedInManager);
 
     if (!loggedInManager) {
-      navigate(`${location.pathname}/login`);
+      navigate(`/manager-login`);
     }
   }, []);
 
