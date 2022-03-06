@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ManagerNavbar() {
   return (
     <nav className="bg-gray-800">
@@ -13,30 +15,26 @@ function ManagerNavbar() {
             </div>
           </div>
           <div className="flex space-x-4">
-            <a
-              href="#"
+            <Link to="/manager/users"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Users
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="/manager/bikes"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Bikes
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link to="/manager/admins"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Managers
-            </a>
-            <a
-              href="#"
+            </Link>
+            <button
               className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Welcome, manager
-            </a>
+            </button>
           </div>
         </div>
       </div>
