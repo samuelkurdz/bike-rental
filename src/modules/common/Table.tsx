@@ -1,12 +1,29 @@
-import { Bike } from "../../interfaces";
+import { PropsWithChildren, ReactNode } from "react";
 
-interface BikeTableProps {
-  bikes: Bike[];
+export function TableHeaderCell({ children }: PropsWithChildren<{}>) {
+  return (
+    <th
+      scope="col"
+      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+    >
+      {children}
+    </th>
+  );
 }
 
-const basicTableheader = ["model", "color", "location", "Status", "rating"];
+export function EmptyTableHeaderCell({screenReaderText}: any) {
+  return (
+    <th scope="col" className="relative px-6 py-3">
+      <span className="sr-only">{screenReaderText}</span>
+    </th>
+  );
+}
 
-function BikeTable({ bikes }: BikeTableProps) {
+export interface TableProps {
+  tableHeaderCells: ReactNode[];
+  tableBodyCells: ReactNode[];
+}
+function Table({tableHeaderCells, tableBodyCells}: TableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -15,53 +32,13 @@ function BikeTable({ bikes }: BikeTableProps) {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  {/* {basicTableheader.map((header) => (
-                    <th
-                      key={header}
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      {header}
-                    </th>
-                  ))} */}
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Model
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Color
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Location
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Status
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Rating
-                  </th>
-
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Make Reservation</span>
-                  </th>
+                  {
+                    tableHeaderCells.map(header => {header})
+                  }
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {bikes.map(
+                {/* {bikes.map(
                   ({ model, color, location, rating, id, isAvailable }) => (
                     <tr key={id}>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -97,7 +74,7 @@ function BikeTable({ bikes }: BikeTableProps) {
                       </td>
                     </tr>
                   )
-                )}
+                )} */}
               </tbody>
             </table>
           </div>
@@ -106,5 +83,3 @@ function BikeTable({ bikes }: BikeTableProps) {
     </div>
   );
 }
-
-export default BikeTable;

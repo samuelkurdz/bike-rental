@@ -1,8 +1,10 @@
+import { managers } from "../../../data";
+import ManagersTable from "../components/manage-admin-tables";
 
 function ManageAdmin() {
   return (
     <div className="manages-admins">
-      <p>display admin manage</p>
+      <ManagersTable managers={managers} />
     </div>
   );
 }
