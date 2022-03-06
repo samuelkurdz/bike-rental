@@ -7,9 +7,10 @@ function UserHome() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const userSession = supabase.auth.session();
-    // supabase.auth.signOut();
-    if (!userSession) {
+    const loggedInUser = localStorage.getItem('user');
+    console.log(loggedInUser);
+
+    if (!loggedInUser) {
       navigate(`${location.pathname}/login`);
     }
   }, []);

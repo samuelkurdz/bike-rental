@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUserPayload } from "../interfaces/user";
-import { supabase } from "../supabaseClient";
+import { users } from "../data";
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
@@ -10,9 +10,7 @@ function LoginForm() {
   });
   let navigate = useNavigate();
 
-  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     SetLoginPayload({
       ...loginPayload,
       [event.target.name]: event.target.value,
@@ -21,16 +19,16 @@ function LoginForm() {
 
   const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    supabase.auth
-      .signIn({ ...loginPayload })
-      .then((user) => {
-        // TODO {use user data to get user data, save to state and use on home page}
-        console.log(user);
-        navigate(`/app`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    const userInDatabase = users.find(
+      (user) => user.email === loginPayload.email
+    );
+    if (userInDatabase && userInDatabase.password === loginPayload.password) {
+      localStorage.setItem('user', userInDatabase.email);
+      navigate(`/app`);
+    } else {
+      alert("wrong login details");
+    }
   };
 
   return (

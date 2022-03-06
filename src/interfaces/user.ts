@@ -8,3 +8,11 @@ export interface CreateUserPayload {
   password: string;
 }
 
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  password: string;
+  bikes: string[]
+}
+

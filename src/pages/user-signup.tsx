@@ -4,9 +4,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CreateUserPayload } from "../interfaces/user";
-import { supabase } from "../supabaseClient";
+import { users } from "../data";
+import { v4 as uuidv4 } from "uuid";
 
 function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
@@ -14,45 +15,44 @@ function SignupForm() {
     email: "",
     password: "",
   });
+  let navigate = useNavigate();
 
-  useEffect(() => {
-    doesUsernameExists();
-   console.log( supabase.auth.session());
-   console.log( supabase.auth);
-  }, []);
+  useEffect(() => {}, []);
 
-  const doesUsernameExists = async () => {
-    const num = await supabase.from("profiles");
-    console.log(num)
-
-  };
-
-  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
     SetNewUser({ ...newUser, [event.target.name]: event.target.value });
   };
 
-  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
     event.preventDefault();
-    const res = await supabase.auth.signUp({
-      email: newUser.email,
-      password: newUser.password,
-    });
-    console.log(res);
-    const updates = {
-      username: newUser.username,
-      role: "manager",
-      email: newUser.email,
-      updated_at: new Date(),
-    };
-    const { data, error } = await supabase
-      .from("profiles")
-      .update(updates)
-      .eq("id", res?.user?.id);
-    console.log(data, error);
+    console.log(newUser);
+
+    const isUsernameExisting = users.some(
+      (user) => user.username === newUser.username
+    );
+    const isEmailExisting = users.some((user) => user.email === newUser.email);
+    console.log(isUsernameExisting, isEmailExisting);
+
+    if (isUsernameExisting) {
+      alert("username is taken");
+      return;
+    }
+    if (isEmailExisting) {
+      alert("email is taken");
+      return;
+    }
+
+    users.push({ ...newUser, bikes: [], id: uuidv4() });
+    console.log(users);
+    navigate("/app/login");
   };
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleLoginFormSubmit}>
+    <form className="mt-8 space-y-6" onSubmit={handleSignupFormSubmit}>
       <div className="space-y-5">
         <div>
           <label htmlFor="username">Username</label>
@@ -64,7 +64,7 @@ function SignupForm() {
             autoComplete="username"
             placeholder="Username"
             value={newUser.username}
-            onChange={handleLoginFormChange}
+            onChange={handleSignUpFormChange}
             className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           />
         </div>
@@ -78,7 +78,7 @@ function SignupForm() {
             autoComplete="email"
             placeholder="Email address"
             value={newUser.email}
-            onChange={handleLoginFormChange}
+            onChange={handleSignUpFormChange}
             className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           />
         </div>
@@ -92,7 +92,7 @@ function SignupForm() {
             placeholder="Password"
             autoComplete="current-password"
             value={newUser.password}
-            onChange={handleLoginFormChange}
+            onChange={handleSignUpFormChange}
             className="appearance-none rounded-sm relative block w-full mt-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
           />
         </div>

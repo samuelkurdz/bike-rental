@@ -1,8 +1,7 @@
-import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LoginUserPayload } from "../interfaces/user";
-import { supabase } from "../supabaseClient";
+import { managers } from "../data";
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
@@ -24,22 +23,15 @@ function LoginForm() {
     event
   ) => {
     event.preventDefault();
-    try {
-      const loggedInProfile = await supabase.auth.signIn({ ...loginPayload });
-      const userData: PostgrestSingleResponse<{ role: string }> = await supabase
-        .from("profiles")
-        .select(`role`)
-        .eq("id", loggedInProfile.user?.id)
-        .single();
+    const managerInDatabase = managers.find(
+      (manager) => manager.email === loginPayload.email
+    );
 
-      if (userData.body?.role && userData.body?.role === "manager") {
-        navigate(`/manager`);
-      } else {
-        alert("not a manager");
-        supabase.auth.signOut();
-      }
-    } catch (err) {
-      alert(err);
+    if (managerInDatabase && managerInDatabase.password === loginPayload.password) {
+      localStorage.setItem('manager', managerInDatabase.email);
+      navigate(`/manager`);
+    } else {
+      alert("wrong login details");
     }
   };
 
