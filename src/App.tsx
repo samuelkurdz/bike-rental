@@ -1,6 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.scss";
-
 
 import RoutePgeOutlet from "./pages/user-app";
 import Login from "./pages/user-login";
@@ -14,6 +13,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* handle wild cards and '/' routes*/}
+        <Route path="*" element={<Navigate to="/app" />} />
         <Route path="app" element={<RoutePgeOutlet />}>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />

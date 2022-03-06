@@ -70,7 +70,7 @@ function LoginForm() {
         <div className="text-sm">
           <Link
             className="font-medium text-indigo-600 hover:text-indigo-500"
-            to="/signup"
+            to="/app/signup"
           >
             Don't have an account?
           </Link>

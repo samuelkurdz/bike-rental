@@ -7,8 +7,10 @@ function ManagerHome() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const userSession = supabase.auth.session();
-    if (!userSession) {
+    const loggedInManager = localStorage.getItem('manager');
+    console.log(loggedInManager);
+
+    if (!loggedInManager) {
       navigate(`${location.pathname}/login`);
     }
   }, []);
