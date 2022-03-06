@@ -1,19 +1,39 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { Link } from "react-router-dom";
-import { LoginUserPayload } from '../interfaces/user';
-
+import { useNavigate } from "react-router-dom";
+import { LoginUserPayload } from "../../../interfaces/user";
+import { managers } from "../../../data";
 
 function LoginForm() {
-  const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({email: '', password: ''});
+  const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
+    email: "",
+    password: "",
+  });
+  let navigate = useNavigate();
 
-  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    SetLoginPayload({...loginPayload, [event.target.name]: event.target.value});
-  }
+  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    SetLoginPayload({
+      ...loginPayload,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
     event.preventDefault();
-    console.log(loginPayload);
-  }
+    const managerInDatabase = managers.find(
+      (manager) => manager.email === loginPayload.email
+    );
+
+    if (managerInDatabase && managerInDatabase.password === loginPayload.password) {
+      localStorage.setItem('manager', managerInDatabase.email);
+      navigate(`/manager`);
+    } else {
+      alert("wrong login details");
+    }
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleLoginFormSubmit}>
@@ -48,19 +68,6 @@ function LoginForm() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center"></div>
-
-        <div className="text-sm">
-          <Link
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-            to="/signup"
-          >
-            Don't have an account?
-          </Link>
-        </div>
-      </div>
-
       <div>
         <button
           type="submit"
@@ -74,7 +81,7 @@ function LoginForm() {
   );
 }
 
-function Login() {
+function ManagerLogin() {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -96,4 +103,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ManagerLogin;

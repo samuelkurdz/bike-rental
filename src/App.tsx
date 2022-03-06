@@ -1,22 +1,40 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.scss";
 
-import Login from './pages/login';
-import Signup from './pages/signup';
-import ManagerHome from './pages/manager-home';
-import UserHome from './pages/user-home';
+import UserLayout from "./modules/users/user-layout";
+import ManagerOutlet from './modules/managers/manager-layout';
+
+import Login from "./modules/users/pages/user-login";
+import Signup from "./modules/users/pages/user-signup";
+import ManagerLogin from "./modules/managers/pages/manager-login";
+
+import UserHome from "./modules/users/pages/user-home";
+import ManagerHome from "./modules/managers/pages/manager-home";
+import ManageBikes from './modules/managers/pages/manage-bikes';
+import ManageUsers from './modules/managers/pages/manage-users';
+import ManageAdmins from './modules/managers/pages/manage-admins';
 
 function App() {
-  // let {  } = useMatch();
-
   return (
     <div className="App">
       <Routes>
-        <Route path="" element={<Login />} />
+        {/* handle wild cards and '/' routes*/}
+        {/* <Route path="*" element={<Navigate to="/app" />} /> */}
+
+        <Route path="manager-login" element={<ManagerLogin />} />
+        <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-        <Route path="manager" element={<ManagerHome />} />
-        <Route path="user" element={<UserHome />} />
+
+        <Route path="app" element={<UserLayout />}>
+          <Route index element={<UserHome />} />
+        </Route>
+
+        <Route path="manager" element={<ManagerOutlet />}>
+          <Route index element={<ManagerHome />} />
+          <Route path="users" element={<ManageUsers />} />
+          <Route path="bikes" element={<ManageBikes />} />
+          <Route path="admins" element={<ManageAdmins />} />
+        </Route>
       </Routes>
     </div>
   );
