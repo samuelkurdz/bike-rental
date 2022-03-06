@@ -13,7 +13,6 @@ export interface ReservedBike {
   fromPeriod: string;
   toPeriod: string;
 }
-
 export interface User {
   id: string;
   email: string;
@@ -21,4 +20,3 @@ export interface User {
   password: string;
   bikes: ReservedBike[]
 }
-

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../supabaseClient";
+import ManagerNavbar from '../components/manager-navbar';
 
 function ManagerHome() {
   let location = useLocation();
@@ -17,7 +17,7 @@ function ManagerHome() {
 
   return (
     <div className="manager-home">
-      <p>manager home</p>
+      <ManagerNavbar />
     </div>
   );
 }
