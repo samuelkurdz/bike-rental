@@ -8,11 +8,17 @@ export interface CreateUserPayload {
   password: string;
 }
 
+export interface ReservedBike {
+  bikeId: string;
+  fromPeriod: string;
+  toPeriod: string;
+}
+
 export interface User {
   id: string;
   email: string;
   username: string;
   password: string;
-  bikes: string[]
+  bikes: ReservedBike[]
 }
 
