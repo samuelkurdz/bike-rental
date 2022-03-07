@@ -2,6 +2,7 @@ import { Bike } from "../../../interfaces";
 
 interface ManageBikesTableProps {
   bikes: Bike[];
+  selectedBike: (id:string) => void;
 }
 
 const basicTableheader = [
@@ -12,7 +13,7 @@ const basicTableheader = [
   "rating",
 ];
 
-function ManageBikesTable({ bikes }: ManageBikesTableProps) {
+function ManageBikesTable({ bikes, selectedBike }: ManageBikesTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -50,12 +51,12 @@ function ManageBikesTable({ bikes }: ManageBikesTableProps) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          <a
-                            href="#"
+                          <button
+                          onClick={() => selectedBike(id)}
                             className="text-indigo-600 hover:text-indigo-900"
                           >
                             {reservedDates.length}
-                          </a>
+                          </button>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
