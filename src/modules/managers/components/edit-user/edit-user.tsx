@@ -102,11 +102,11 @@ function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
                     </Dialog.Title>
                     <div className="mt-2">
                       {EditUserForm({
-                        handleFormSubmit,
-                        updatedUser,
-                        handleFormChange,
                         closeModal,
+                        updatedUser,
                         cancelButtonRef,
+                        handleFormSubmit,
+                        handleFormChange,
                       })}
                     </div>
                   </div>
