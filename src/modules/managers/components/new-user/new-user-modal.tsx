@@ -55,6 +55,7 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
     }
 
     dispatch(addUser({ ...newUser, bikes: [], id: uuidv4() }));
+    SetNewUser({ username: "", email: "", password: "" });
     closeModal();
   };
 
@@ -106,7 +107,13 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
                       Add New User
                     </Dialog.Title>
                     <div className="mt-2">
-                      {NewUserForm({ handleSignupFormSubmit, newUser, handleSignUpFormChange, closeModal, cancelButtonRef })}
+                      {NewUserForm({
+                        handleSignupFormSubmit,
+                        newUser,
+                        handleSignUpFormChange,
+                        closeModal,
+                        cancelButtonRef,
+                      })}
                     </div>
                   </div>
                 </div>
@@ -120,5 +127,3 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
 }
 
 export default NewUserModal;
-
-

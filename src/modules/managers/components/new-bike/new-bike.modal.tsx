@@ -54,6 +54,11 @@ function NewbikeModal({ open, closeModal }: NewbikeModalInterface) {
         isAvailable: true,
       })
     );
+    SetNewbike({
+      model: "",
+      color: "",
+      location: "",
+    });
     closeModal();
   };
 
