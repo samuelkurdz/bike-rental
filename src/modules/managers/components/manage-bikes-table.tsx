@@ -4,6 +4,7 @@ interface ManageBikesTableProps {
   bikes: Bike[];
   selectBike: (id:string) => void;
   handleDeleteBike: (id:string) => void;
+  handleEditBike: (id: string) => void;
 }
 
 const basicTableheader = [
@@ -14,7 +15,7 @@ const basicTableheader = [
   "rating",
 ];
 
-function ManageBikesTable({ bikes, selectBike, handleDeleteBike }: ManageBikesTableProps) {
+function ManageBikesTable({ bikes, selectBike, handleDeleteBike, handleEditBike }: ManageBikesTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -66,6 +67,7 @@ function ManageBikesTable({ bikes, selectBike, handleDeleteBike }: ManageBikesTa
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button
                           type="button"
+                          onClick={() => handleEditBike(id)}
                           className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         >
                           Edit

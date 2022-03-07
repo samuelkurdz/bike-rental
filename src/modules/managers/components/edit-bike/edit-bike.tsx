@@ -6,50 +6,43 @@ import {
   useRef,
   useState,
 } from "react";
-import { User } from "../../../../interfaces";
+import { Bike } from "../../../../interfaces";
 import { RootState } from "../../../../redux/store";
-import { EditUserForm } from './edit-user-form';
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../../../../redux/users-reducer";
+import { updateBike } from "../../../../redux/bikes-reducer";
 
-interface EditUserDetailsModalInterface {
+import { EditBikeForm } from "./edit-bike-form";
+
+interface EditBikeDetailsModalInterface {
   open: boolean;
-  user: any;
+  bike: any;
   closeModal: () => void;
 }
 
-function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
-  const [updatedUser, SetUpdatedUser] = useState<User>(user);
+function EditBike({ closeModal, bike, open }: EditBikeDetailsModalInterface) {
+  const [updatedBike, SetUpdatedBike] = useState<Bike>(bike);
 
-  const users = useSelector((state: RootState) => state.users.data);
+  const Bikes = useSelector((state: RootState) => state.bikes.data);
   const dispatch = useDispatch();
   const cancelButtonRef = useRef(null);
 
   const handleFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    SetUpdatedUser({ ...updatedUser, [event.target.name]: event.target.value });
+    SetUpdatedBike({ ...updatedBike, [event.target.name]: event.target.value });
   };
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const isUsernameExisting = users.some(
-      (user) =>
-        user.username === updatedUser.username && user.id !== updatedUser.id
-    );
-    const isEmailExisting = users.some(
-      (user) => user.email === updatedUser.email && user.id !== updatedUser.id
+    const isBikeModelExisting = Bikes.some(
+      (Bike) => Bike.model === updatedBike.model && Bike.id !== updatedBike.id
     );
 
-    if (isUsernameExisting) {
-      alert("username is taken");
-      return;
-    }
-    if (isEmailExisting) {
-      alert("email is taken");
+    if (isBikeModelExisting) {
+      alert("Bike model is taken");
       return;
     }
 
-    dispatch(updateUser(updatedUser));
+    dispatch(updateBike(updatedBike));
     closeModal();
   };
 
@@ -98,12 +91,12 @@ function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
                       as="h3"
                       className="text-lg leading-6 font-medium text-gray-900 capitalize flex flex-col justify-center sm:flex-row gap-3 items-center"
                     >
-                      Edit {user?.username} Details
+                      Edit {updatedBike.model} Details
                     </Dialog.Title>
                     <div className="mt-2">
-                      {EditUserForm({
+                      {EditBikeForm({
                         closeModal,
-                        updatedUser,
+                        updatedBike,
                         cancelButtonRef,
                         handleFormSubmit,
                         handleFormChange,
@@ -120,4 +113,4 @@ function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
   );
 }
 
-export default EditUser;
+export default EditBike;
