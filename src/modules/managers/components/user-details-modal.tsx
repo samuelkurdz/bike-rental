@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { User } from "../../../interfaces";
-import { bikes } from "../../../data";
+import { bikes } from "../../../databases";
 
 interface UserDetailsModalInterface {
   open: boolean;

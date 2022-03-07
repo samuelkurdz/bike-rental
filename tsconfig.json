@@ -18,7 +18,7 @@
     "baseUrl": "./src",
     "paths": {
       "@interfaces": ["./interfaces"],
-      "@data": ["./data"],
+      // "@databases": ["./databases"],
     },
   },
   "include": ["src"],

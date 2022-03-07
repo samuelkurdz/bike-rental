@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { bikes } from '../data';
+import { bikes } from '../databases';
 import { Bike } from '../interfaces';
 
 export interface BikesState {
