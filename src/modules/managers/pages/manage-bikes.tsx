@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Bike } from "../../../interfaces";
 
 import ManageBikesTable from "../components/manage-bikes-table";
 import BikeDetailsModal from "../components/bike-details-modal";
@@ -9,6 +8,7 @@ import EditBike from "../components/edit-bike/edit-bike";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeBike } from "../../../redux/bikes-reducer";
+import { Bike } from "@interfaces";
 
 function ManageBikes() {
   const [bike, setBike] = useState<Bike | undefined>(undefined);

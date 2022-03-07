@@ -12,13 +12,13 @@
 
 #### Managers can:
 
-- Create, Read, Edit, and Delete Bikes.
+- Create, Read, Edit, and Delete Bikes.[x]
 
-- Create, Read, Edit, and Delete Users and Managers.
+- Create, Read, Edit, and Delete Users and Managers.[/]
 
-- See all the users who reserved a bike, and the period of time they did it.
+- See all the users who reserved a bike, and the period of time they did it.[x]
 
-- See all the bikes reserved by a user and the period of time they did it.
+- See all the bikes reserved by a user and the period of time they did it.[x]
 
 #### Users can:
 

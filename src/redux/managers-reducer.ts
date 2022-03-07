@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Manager } from '../interfaces/index';
+import { Manager } from '@interfaces';
 
 const initialState: Manager[] = [];
 
