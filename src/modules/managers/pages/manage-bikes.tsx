@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Bike } from "../../../interfaces";
+
 import ManageBikesTable from "../components/manage-bikes-table";
 import BikeDetailsModal from "../components/bike-details-modal";
+import NewBike from '../components/new-bike/new-bike';
+
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeBike } from "../../../redux/bikes-reducer";
@@ -33,6 +36,7 @@ function ManageBikes() {
 
   return (
     <div className="manages-bikes">
+      <NewBike />
       <ManageBikesTable bikes={bikes} selectBike={selectBike} handleDeleteBike={handleDeleteBike} />
       {bike ? (
         <BikeDetailsModal
