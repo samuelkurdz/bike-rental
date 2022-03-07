@@ -20,3 +20,5 @@ export interface User {
   password: string;
   bikes: ReservedBike[]
 }
+
+// export interface 

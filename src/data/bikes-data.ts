@@ -33,7 +33,7 @@ export const bikes: Bike[] = [
   },
   {
     id: '710b962e-041c-11e1-9234-0123456789ab',
-    model: 'toyota',
+    model: 'benz',
     color: 'green',
     location: 'Lagos, Nigeria',
     rating: 3,
@@ -53,7 +53,7 @@ export const bikes: Bike[] = [
   },
   {
     id: '11b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
-    model: 'honda',
+    model: 'bmw',
     color: 'red',
     location: 'Abuja, Nigeria',
     rating: 4,

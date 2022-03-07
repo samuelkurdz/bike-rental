@@ -2,11 +2,12 @@ import { User } from "../../../interfaces";
 
 interface UsersTableProps {
   users: User[];
+  selectUser: (id:string) => void;
 }
 
 const basicTableheader = ["Username", "Email", "No of Reserved Bikes"];
 
-function UsersTable({ users }: UsersTableProps) {
+function ManageUsersTable({ users, selectUser }: UsersTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -39,7 +40,7 @@ function UsersTable({ users }: UsersTableProps) {
                       <div className="text-sm text-gray-900">{email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <button className="text-indigo-600 hover:text-indigo-900">
+                      <button onClick={() => selectUser(id)} className="text-indigo-600 hover:text-indigo-900">
                         {bikes.length}
                       </button>
                     </td>
@@ -68,4 +69,4 @@ function UsersTable({ users }: UsersTableProps) {
   );
 }
 
-export default UsersTable;
+export default ManageUsersTable;
