@@ -20,10 +20,17 @@ export const usersSlice = createSlice({
     removeUser: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(user => user.id !== action.payload);
     },
+    updateUser: (state, action: PayloadAction<User>) => {
+      const index = state.data.findIndex(user => user.id === action.payload.id);
+
+      if (index === -1) return;
+      state.data[index] = action.payload;
+
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addUser, removeUser } = usersSlice.actions;
+export const { addUser, removeUser, updateUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
