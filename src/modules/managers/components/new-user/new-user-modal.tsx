@@ -1,30 +1,49 @@
-import { Fragment, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  Fragment,
+  useRef,
+  useState,
+} from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import NewUserForm from "./new-user-form";
-import { users } from "../../../../data";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector, useDispatch } from "react-redux";
 import { CreateUserPayload } from "../../../../interfaces";
+import { addUser } from "../../../../redux/users-reducer";
+import { RootState } from "../../../../redux/store";
+import { NewUserForm } from "./new-user-form";
 
 interface NewuserModalInterface {
   open: boolean;
   closeModal: () => void;
 }
+
 function NewUserModal({ open, closeModal }: NewuserModalInterface) {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
     username: "",
     email: "",
     password: "",
   });
+
+  const users = useSelector((state: RootState) => state.users.data);
+  const dispatch = useDispatch();
   const cancelButtonRef = useRef(null);
 
-  const handleUserSubmit = async () => {
-    console.log(newUser);
+  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    SetNewUser({ ...newUser, [event.target.name]: event.target.value });
+  };
+
+  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
+    event.preventDefault();
 
     const isUsernameExisting = users.some(
       (user) => user.username === newUser.username
     );
     const isEmailExisting = users.some((user) => user.email === newUser.email);
-    console.log(isUsernameExisting, isEmailExisting);
 
     if (isUsernameExisting) {
       alert("username is taken");
@@ -35,9 +54,8 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
       return;
     }
 
-    users.push({ ...newUser, bikes: [], id: uuidv4() });
+    dispatch(addUser({ ...newUser, bikes: [], id: uuidv4() }));
     closeModal();
-    console.log(users);
   };
 
   return (
@@ -88,28 +106,10 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
                       Add New User
                     </Dialog.Title>
                     <div className="mt-2">
-                      <NewUserForm newUser={newUser} SetNewUser={SetNewUser} />
+                      {NewUserForm({ handleSignupFormSubmit, newUser, handleSignUpFormChange, closeModal, cancelButtonRef })}
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="submit"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  // onClick={closeModal}
-                  onClick={handleUserSubmit}
-                >
-                  Add User
-                </button>
-                <button
-                  type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={closeModal}
-                  ref={cancelButtonRef}
-                >
-                  Close
-                </button>
               </div>
             </div>
           </Transition.Child>
@@ -120,3 +120,5 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
 }
 
 export default NewUserModal;
+
+

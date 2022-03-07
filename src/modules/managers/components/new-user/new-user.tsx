@@ -3,13 +3,11 @@ import { PlusIcon } from "@heroicons/react/solid";
 import NewUserModal from './new-user-modal';
 
 
-
 export default function NewUser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeUserDetailsModal = () => {
     setIsModalOpen(false);
-    // setUser(undefined);
   };
 
   return (
