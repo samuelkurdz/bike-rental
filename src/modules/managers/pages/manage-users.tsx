@@ -7,6 +7,7 @@ import { RootState } from "../../../redux/store";
 import { removeUser } from "../../../redux/users-reducer";
 import EditUser from "../components/edit-user/edit-user";
 import { User } from "@interfaces";
+import { removeReserve } from "../../../redux/reserve-reducer";
 
 function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);
@@ -34,6 +35,9 @@ function ManageUsers() {
   };
 
   const handleDeleteUser = (userId: string) => {
+    reserves
+      .filter((res) => res.userId === userId)
+      .map((userRes) => dispatch(removeReserve(userRes.id)));
     dispatch(removeUser(userId));
   };
 

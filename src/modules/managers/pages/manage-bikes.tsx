@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeBike } from "../../../redux/bikes-reducer";
 import { Bike } from "@interfaces";
+import { removeReserve } from "../../../redux/reserve-reducer";
 
 function ManageBikes() {
   const [bike, setBike] = useState<Bike | undefined>(undefined);
@@ -36,6 +37,9 @@ function ManageBikes() {
   };
 
   const handleDeleteBike = (bikeId: string) => {
+    reserves
+      .filter((res) => res.bikeId === bikeId)
+      .map((bikeRes) => dispatch(removeReserve(bikeRes.id)));
     dispatch(removeBike(bikeId));
   };
 
@@ -52,7 +56,6 @@ function ManageBikes() {
       toggelEditModal(true);
     }
   };
-
 
   return (
     <div className="manages-bikes">
