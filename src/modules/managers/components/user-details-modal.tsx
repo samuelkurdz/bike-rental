@@ -1,8 +1,9 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { User } from "../../../interfaces";
-import { bikes } from "../../../databases";
+import { Bike, Reserve, User } from "../../../interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 interface UserDetailsModalInterface {
   open: boolean;
@@ -15,6 +16,8 @@ function UserDetailsModal({
   closeModal,
 }: UserDetailsModalInterface) {
   const cancelButtonRef = useRef(null);
+  const reserves = useSelector((state: RootState) => state.reserves.data);
+  const bikes = useSelector((state: RootState) => state.bikes.data);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -70,23 +73,17 @@ function UserDetailsModal({
                       {user?.username} Bike Details
                     </Dialog.Title>
                     <div className="mt-2">
-                      {user?.bikes.length === 0 ? (
+                      {reserves.filter((res) => res.userId === user?.id)
+                        .length === 0 ? (
                         <p className="text-center py-2">No Bikes Reserved</p>
                       ) : (
-                        BikeTable(user)
+                        BikeTable(user, reserves, bikes)
                       )}
                     </div>
                   </div>
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                {/* <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={closeModal}
-                >
-                  Deactivate
-                </button> */}
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
@@ -106,7 +103,7 @@ function UserDetailsModal({
 
 export default UserDetailsModal;
 
-function BikeTable(user: User | undefined) {
+function BikeTable(user: User | undefined, reserves: Reserve[], bikes: Bike[]) {
   const headerCells = ["Model", "From", "To"];
   return (
     <table className="min-w-full divide-y divide-gray-200">
@@ -124,21 +121,23 @@ function BikeTable(user: User | undefined) {
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
-        {user?.bikes.map(({ bikeId, fromPeriod, toPeriod }) => (
-          <tr key={bikeId}>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">
-                {bikes.find((bike) => bike.id === bikeId)?.model}
-              </div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">{fromPeriod}</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">{toPeriod}</div>
-            </td>
-          </tr>
-        ))}
+        {reserves
+          .filter((res) => res.userId === user?.id)
+          .map(({ id, bikeId, toPeriod, fromPeriod }) => (
+            <tr key={id}>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">
+                  {bikes.find((bike) => bike.id === bikeId)?.model}
+                </div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{fromPeriod}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{toPeriod}</div>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );

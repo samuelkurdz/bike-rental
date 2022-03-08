@@ -14,7 +14,7 @@
 
 - Create, Read, Edit, and Delete Bikes.[x]
 
-- Create, Read, Edit, and Delete Users and Managers.[/]
+- Create, Read, Edit, and Delete Users and Managers.[x]
 
 - See all the users who reserved a bike, and the period of time they did it.[x]
 

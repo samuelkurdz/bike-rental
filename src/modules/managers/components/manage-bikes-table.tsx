@@ -1,7 +1,8 @@
-import { Bike } from "@interfaces";
+import { Bike, Reserve } from "@interfaces";
 
 interface ManageBikesTableProps {
   bikes: Bike[];
+  reserves: Reserve[];
   selectBike: (id:string) => void;
   handleDeleteBike: (id:string) => void;
   handleEditBike: (id: string) => void;
@@ -15,7 +16,7 @@ const basicTableheader = [
   "rating",
 ];
 
-function ManageBikesTable({ bikes, selectBike, handleDeleteBike, handleEditBike }: ManageBikesTableProps) {
+function ManageBikesTable({ bikes, reserves, selectBike, handleDeleteBike, handleEditBike }: ManageBikesTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -40,7 +41,7 @@ function ManageBikesTable({ bikes, selectBike, handleDeleteBike, handleEditBike 
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {bikes.map(
-                  ({ model, color, location, rating, id, reservedDates }) => (
+                  ({ model, color, location, rating, id }) => (
                     <tr key={id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{model}</div>
@@ -57,7 +58,7 @@ function ManageBikesTable({ bikes, selectBike, handleDeleteBike, handleEditBike 
                           onClick={() => selectBike(id)}
                             className="text-indigo-600 hover:text-indigo-900"
                           >
-                            {reservedDates.length}
+                            {reserves.filter((res) => res.bikeId === id).length}
                           </button>
                         </div>
                       </td>

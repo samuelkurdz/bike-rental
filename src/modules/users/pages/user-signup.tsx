@@ -46,7 +46,7 @@ function SignupForm() {
       return;
     }
 
-    users.push({ ...newUser, bikes: [], id: uuidv4() });
+    users.push({ ...newUser, id: uuidv4() });
     console.log(users);
     navigate("login");
   };

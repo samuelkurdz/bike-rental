@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeUser } from "../../../redux/users-reducer";
 import EditUser from "../components/edit-user/edit-user";
-import { User } from '@interfaces';
+import { User } from "@interfaces";
 
 function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);
@@ -17,6 +17,7 @@ function ManageUsers() {
 
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.data);
+  const reserves = useSelector((state: RootState) => state.reserves.data);
 
   const selectUser = (id: string) => {
     const selectedUser = users.find((user) => user.id === id);
@@ -55,14 +56,15 @@ function ManageUsers() {
       <NewUser />
       <ManageUsersTable
         users={users}
+        reserves={reserves}
         selectUser={selectUser}
         handleEditUser={handleEditUser}
         handleDeleteUser={handleDeleteUser}
       />
       {userDetail ? (
         <UserDetailsModal
-          open={userDetail}
           user={user}
+          open={userDetail}
           closeModal={closeUserDetailsModal}
         />
       ) : null}

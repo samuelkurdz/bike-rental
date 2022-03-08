@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './users-reducer';
 import bikeReducer from './bikes-reducer';
 import managerReducer from './managers-reducer';
+import reserveReducer from './reserve-reducer';
 
 export const store = configureStore({
   reducer: {
     users: userReducer,
     bikes: bikeReducer,
-    managers: managerReducer
+    managers: managerReducer,
+    reserves: reserveReducer,
   },
 })
 

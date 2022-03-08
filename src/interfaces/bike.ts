@@ -11,11 +11,4 @@ export interface Bike {
   location: string;
   rating: number;
   isAvailable: boolean;
-  reservedDates: ReservedDate[];
-}
-
-export interface ReservedDate {
-  reservedBy: string;
-  fromPeriod: string;
-  toPeriod: string;
 }

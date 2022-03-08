@@ -1,8 +1,9 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { Bike } from "../../../interfaces";
-import { users } from "../../../databases";
+import { Bike, Reserve, User } from "../../../interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 interface BikeDetailsModalInterface {
   open: boolean;
@@ -15,6 +16,8 @@ function BikeDetailsModal({
   closeModal,
 }: BikeDetailsModalInterface) {
   const cancelButtonRef = useRef(null);
+  const reserves = useSelector((state: RootState) => state.reserves.data);
+  const users = useSelector((state: RootState) => state.users.data);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -70,11 +73,19 @@ function BikeDetailsModal({
                       {bike?.model} Users Details
                     </Dialog.Title>
                     <div className="mt-2">
-                      {bike?.reservedDates.length === 0 ? (
+                      {reserves.filter((res) => res.bikeId === bike?.id)
+                        .length === 0 ? (
+                        <p className="text-center py-2">
+                          {bike?.model} has no reservation
+                        </p>
+                      ) : (
+                        UsersTable(bike, reserves, users)
+                      )}
+                      {/* {bike?.reservedDates.length === 0 ? (
                         <p className="text-center py-2">{bike.model} has no reservation</p>
                       ) : (
                         Userstable(bike)
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
@@ -99,7 +110,11 @@ function BikeDetailsModal({
 
 export default BikeDetailsModal;
 
-function Userstable(bike: Bike | undefined) {
+function UsersTable(
+  bike: Bike | undefined,
+  reserves: Reserve[],
+  users: User[]
+) {
   const headerCells = ["Username", "From", "To"];
   return (
     <table className="min-w-full divide-y divide-gray-200">
@@ -117,21 +132,26 @@ function Userstable(bike: Bike | undefined) {
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
-        {bike?.reservedDates.map(({ fromPeriod, toPeriod, reservedBy }) => (
-          <tr key={reservedBy}>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">
-                {users.find((user) => user.id === reservedBy)?.username}
-              </div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">{fromPeriod}</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">{toPeriod}</div>
-            </td>
-          </tr>
-        ))}
+        {reserves
+          .filter((res) => res.bikeId === bike?.id)
+          .map(({ id, userId, toPeriod, fromPeriod }) => (
+            <tr key={id}>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">
+                  {
+                    users.find((user: { id: string }) => user.id === userId)
+                      ?.username
+                  }
+                </div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{fromPeriod}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{toPeriod}</div>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );

@@ -48,7 +48,6 @@ function NewbikeModal({ open, closeModal }: NewbikeModalInterface) {
     dispatch(
       addBike({
         ...newBike,
-        reservedDates: [],
         id: uuidv4(),
         rating: 0,
         isAvailable: true,

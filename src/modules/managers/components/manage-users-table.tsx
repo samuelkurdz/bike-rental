@@ -1,15 +1,22 @@
-import { User } from "../../../interfaces";
+import { Reserve, User } from "../../../interfaces";
 
 interface UsersTableProps {
   users: User[];
-  selectUser: (id:string) => void;
-  handleDeleteUser: (id:string) => void;
+  reserves: Reserve[];
+  selectUser: (id: string) => void;
+  handleDeleteUser: (id: string) => void;
   handleEditUser: (id: string) => void;
 }
 
 const basicTableheader = ["Username", "Email", "No of Reserved Bikes"];
 
-function ManageUsersTable({ users, selectUser, handleDeleteUser, handleEditUser }: UsersTableProps) {
+function ManageUsersTable({
+  users,
+  reserves,
+  selectUser,
+  handleDeleteUser,
+  handleEditUser,
+}: UsersTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -33,7 +40,7 @@ function ManageUsersTable({ users, selectUser, handleDeleteUser, handleEditUser 
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {users.map(({ email, username, bikes, id }) => (
+                {users.map(({ email, username, id }) => (
                   <tr key={id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">{username}</div>
@@ -42,8 +49,11 @@ function ManageUsersTable({ users, selectUser, handleDeleteUser, handleEditUser 
                       <div className="text-sm text-gray-900">{email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <button onClick={() => selectUser(id)} className="text-indigo-600 hover:text-indigo-900">
-                        {bikes.length}
+                      <button
+                        onClick={() => selectUser(id)}
+                        className="text-indigo-600 hover:text-indigo-900"
+                      >
+                        {reserves.filter((res) => res.userId === id).length}
                       </button>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

@@ -19,6 +19,7 @@ function ManageBikes() {
 
   const dispatch = useDispatch();
   const bikes = useSelector((state: RootState) => state.bikes.data);
+  const reserves = useSelector((state: RootState) => state.reserves.data);
 
   const selectBike = (id: string) => {
     const selectedBike = bikes.find((bike) => bike.id === id);
@@ -58,6 +59,7 @@ function ManageBikes() {
       <NewBike />
       <ManageBikesTable
         bikes={bikes}
+        reserves={reserves}
         selectBike={selectBike}
         handleEditBike={handleEditBike}
         handleDeleteBike={handleDeleteBike}

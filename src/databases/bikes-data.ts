@@ -1,4 +1,4 @@
-import { Bike } from "../interfaces";
+import { Bike } from "@interfaces";
 
 export const bikes: Bike[] = [
   {
