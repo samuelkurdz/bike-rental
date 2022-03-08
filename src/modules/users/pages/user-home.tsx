@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { Bike, TypeInterface, User } from "@interfaces";
 import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
+import UserReservesDetailsModal from "../components/user-reserves-details";
 
 function UserHome() {
   const navigate = useNavigate();
@@ -21,9 +22,11 @@ function UserHome() {
   const [isNewReserveModalOpen, toggelNewReserveModal] = useState(false);
   const [bikeToReserveId, SetBikeToReserveId] = useState("");
 
+  const [shouldOpenReservesModal, SetShouldOpenReservesModal] = useState(false);
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    console.log(loggedInUser);
+    // console.log(loggedInUser);
 
     if (!loggedInUser) {
       navigate(`/login`);
@@ -77,9 +80,16 @@ function UserHome() {
     SetBikeToReserveId(bikeId);
   };
 
+  const openReservesModal = () => {
+    SetShouldOpenReservesModal(true);
+  };
+  const closeReservesModal = () => {
+    SetShouldOpenReservesModal(false);
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar openReservesModal={openReservesModal} />
       <BikeTableFilter
         getFilterByValue={getFilterByValue}
         getFilterByType={getFilterByType}
@@ -94,6 +104,13 @@ function UserHome() {
           bikeToReserveId={bikeToReserveId}
           open={isNewReserveModalOpen}
           closeModal={closeNewReserveModal}
+        />
+      ) : null}
+      {shouldOpenReservesModal && loggedInUser ? (
+        <UserReservesDetailsModal
+          user={loggedInUser}
+          open={shouldOpenReservesModal}
+          closeModal={closeReservesModal}
         />
       ) : null}
     </div>

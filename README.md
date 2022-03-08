@@ -30,7 +30,7 @@
 
 - Rate the bikes with a score of 1 to 5.[x]
 
-- Cancel a reservation.
+- Cancel a reservation.[x]
 
 #### Other notes:
 

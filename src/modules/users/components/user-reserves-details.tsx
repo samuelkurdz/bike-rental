@@ -2,22 +2,23 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { Bike, Reserve, User } from "../../../interfaces";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/store";
+import { removeReserve } from "../../../redux/reserve-reducer";
 
 interface BikeDetailsModalInterface {
   open: boolean;
-  bike: Bike | undefined;
+  user: User;
   closeModal: () => void;
 }
-function BikeDetailsModal({
+function UserReservesDetailsModal({
   open,
-  bike,
+  user,
   closeModal,
 }: BikeDetailsModalInterface) {
   const cancelButtonRef = useRef(null);
   const reserves = useSelector((state: RootState) => state.reserves.data);
-  const users = useSelector((state: RootState) => state.users.data);
+  const bikes = useSelector((state: RootState) => state.bikes.data);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -70,16 +71,14 @@ function BikeDetailsModal({
                           aria-hidden="true"
                         />
                       </div>
-                      {bike?.model} Users Details
+                      {user.username} Reserved Bikes
                     </Dialog.Title>
                     <div className="mt-2">
-                      {reserves.filter((res) => res.bikeId === bike?.id)
+                      {reserves.filter((res) => res.userId === user.id)
                         .length === 0 ? (
-                        <p className="text-center py-2">
-                          {bike?.model} has no reservation
-                        </p>
+                        <p className="text-center py-2">No Bikes Reserved</p>
                       ) : (
-                        UsersTable(bike, reserves, users)
+                        BikeTable(user, reserves, bikes)
                       )}
                     </div>
                   </div>
@@ -103,14 +102,16 @@ function BikeDetailsModal({
   );
 }
 
-export default BikeDetailsModal;
+export default UserReservesDetailsModal;
 
-function UsersTable(
-  bike: Bike | undefined,
-  reserves: Reserve[],
-  users: User[]
-) {
-  const headerCells = ["Username", "From", "To"];
+function BikeTable(user: User, reserves: Reserve[], bikes: Bike[]) {
+  const headerCells = ["Model", "From", "To"];
+  const dispatch = useDispatch();
+
+  const handleDeleteReservation = (reservationId: string) => {
+    dispatch(removeReserve(reservationId));
+  };
+
   return (
     <table className="min-w-full divide-y divide-gray-200">
       <thead className="bg-gray-50">
@@ -124,19 +125,19 @@ function UsersTable(
               {cell}
             </th>
           ))}
+          <th scope="col" className="relative px-6 py-3">
+            <span className="sr-only">Actions Button</span>
+          </th>
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
         {reserves
-          .filter((res) => res.bikeId === bike?.id)
-          .map(({ id, userId, toPeriod, fromPeriod }) => (
+          .filter((res) => res.userId === user.id)
+          .map(({ id, bikeId, toPeriod, fromPeriod }) => (
             <tr key={id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">
-                  {
-                    users.find((user: { id: string }) => user.id === userId)
-                      ?.username
-                  }
+                  {bikes.find((bike) => bike.id === bikeId)?.model}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -144,6 +145,14 @@ function UsersTable(
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{toPeriod}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <button
+                  onClick={() => handleDeleteReservation(id)}
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                >
+                  Cancel
+                </button>
               </td>
             </tr>
           ))}
