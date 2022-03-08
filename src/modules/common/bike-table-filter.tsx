@@ -1,18 +1,66 @@
-
-import { Fragment, useState } from "react";
+import {
+  ChangeEventHandler,
+  Dispatch,
+  Fragment,
+  SetStateAction,
+  useState,
+} from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { TypeInterface } from "@interfaces";
 
-export default function BikeTableFilter() {
+const filterOptions = [
+  {
+    name: "model",
+  },
+  {
+    name: "color",
+  },
+  {
+    name: "location",
+  },
+  {
+    name: "rating",
+  },
+];
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+interface FilterInterface {
+  getFilterByValue: (value: string) => void;
+  getFilterByType: (value: TypeInterface) => void;
+}
+
+export default function BikeTableFilter({
+  getFilterByValue,
+  getFilterByType,
+}: FilterInterface) {
+  const [selected, setSelected] = useState(filterOptions[3]);
+  const [filterByValue, SetFilterByValue] = useState("");
+
+  const handleFilterInputChange: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    SetFilterByValue(event.currentTarget.value);
+    getFilterByValue(event.currentTarget.value);
+  };
+
   return (
     <div className="flex flex-wrap items-center gap-4 p-3">
-      <Example />
+      <FilterOptionsMenu
+        selected={selected}
+        setSelected={setSelected}
+        getFilterByType={getFilterByType}
+      />
       <input
         type="text"
-        name="price"
-        id="price"
+        name="filterInput"
+        id="filterInput"
+        value={filterByValue}
+        onChange={(e) => handleFilterInputChange(e)}
         className="focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-64 block px-4 sm:text-sm border-gray-300 rounded-md"
-        placeholder="0.00"
+        placeholder="filter by"
       />
       <div className="ml-auto flex items-center gap-3">
         <p className="text-sm font-medium text-gray-700">Date Available</p>
@@ -26,34 +74,34 @@ export default function BikeTableFilter() {
   );
 }
 
-const filterOptions = [
-  {
-    name: "model",
-  },
-  {
-    name: "color",
-  },
-  {
-    name: "location",
-  },
-  {
-    name: "rate",
-  },
-];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+interface FilterOptionsMenuInterface {
+  selected: {
+    name: string;
+  };
+  setSelected: Dispatch<
+    SetStateAction<{
+      name: string;
+    }>
+  >;
+  getFilterByType: (value: TypeInterface) => void;
 }
 
-function Example() {
-  const [selected, setSelected] = useState(filterOptions[3]);
+function FilterOptionsMenu({
+  selected,
+  setSelected,
+  getFilterByType,
+}: FilterOptionsMenuInterface) {
+  const handleFilterTypeChange = (value: any) => {
+    setSelected(value);
+    getFilterByType(value);
+  };
 
   return (
     <Listbox
       as={"div"}
       className="flex items-center gap-4 w-full md:w-max"
       value={selected}
-      onChange={setSelected}
+      onChange={(value) => handleFilterTypeChange(value)}
     >
       {({ open }) => (
         <>

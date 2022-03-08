@@ -14,3 +14,9 @@ export interface CreateReservePayload {
   toPeriod: string;
   rating: number;
 }
+export interface UpdateReservePayload {
+  id: string;
+  fromPeriod: string;
+  toPeriod: string;
+  rating: number;
+}

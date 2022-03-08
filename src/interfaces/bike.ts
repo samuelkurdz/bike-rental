@@ -12,3 +12,7 @@ export interface Bike {
   rating: number;
   isAvailable: boolean;
 }
+
+export interface TypeInterface {
+  name: 'model' | 'rating' | 'location' | 'color';
+}

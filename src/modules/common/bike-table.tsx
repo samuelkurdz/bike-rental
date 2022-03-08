@@ -4,7 +4,7 @@ interface BikeTableProps {
   bikes: Bike[];
 }
 
-const basicTableheader = ["model", "color", "location", "Status", "rating"];
+const basicTableheader = ["model", "color", "location", "rating"];
 
 function BikeTable({ bikes }: BikeTableProps) {
   return (
@@ -15,7 +15,7 @@ function BikeTable({ bikes }: BikeTableProps) {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  {/* {basicTableheader.map((header) => (
+                  {basicTableheader.map((header) => (
                     <th
                       key={header}
                       scope="col"
@@ -23,38 +23,7 @@ function BikeTable({ bikes }: BikeTableProps) {
                     >
                       {header}
                     </th>
-                  ))} */}
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Model
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Color
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Location
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Status
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Rating
-                  </th>
-
+                  ))}
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Make Reservation</span>
                   </th>
@@ -73,7 +42,7 @@ function BikeTable({ bikes }: BikeTableProps) {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {location}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      {/* <td className="px-6 py-4 whitespace-nowrap">
                         <span
                           className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                             isAvailable
@@ -83,7 +52,7 @@ function BikeTable({ bikes }: BikeTableProps) {
                         >
                           {isAvailable ? "Available" : "Reserved"}
                         </span>
-                      </td>
+                      </td> */}
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {rating}
                       </td>

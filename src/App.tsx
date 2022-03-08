@@ -1,5 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import "./App.scss";
+import { Routes, Route } from "react-router-dom";
 
 import UserLayout from "./modules/users/user-layout";
 import ManagerOutlet from './modules/managers/manager-layout';
@@ -16,7 +15,7 @@ import ManageAdmins from './modules/managers/pages/manage-admins';
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen overflow-hidden max-w-[100vw]">
       <Routes>
         {/* handle wild cards and '/' routes*/}
         {/* <Route path="*" element={<Navigate to="/app" />} /> */}
