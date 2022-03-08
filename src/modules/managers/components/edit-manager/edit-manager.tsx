@@ -8,7 +8,7 @@ import {
 } from "react";
 import { Manager } from "../../../../interfaces";
 import { RootState } from "../../../../redux/store";
-import { EditManagerForm } from './edit-Manager-form';
+import { EditManagerForm } from './edit-manager-form';
 import { useSelector, useDispatch } from "react-redux";
 import { updateManager } from "../../../../redux/managers-reducer";
 

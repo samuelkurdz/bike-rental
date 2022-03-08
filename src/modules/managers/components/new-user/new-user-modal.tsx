@@ -54,7 +54,7 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
       return;
     }
 
-    dispatch(addUser({ ...newUser, bikes: [], id: uuidv4() }));
+    dispatch(addUser({ ...newUser, id: uuidv4() }));
     SetNewUser({ username: "", email: "", password: "" });
     closeModal();
   };
