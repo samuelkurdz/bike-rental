@@ -24,11 +24,11 @@
 
 - See a list of all available bikes for some specific dates.
 
-- Filter by model, color, location, or rate averages.
+- Filter by model, color, location, or rate averages.[x]
 
-- Reserve a bike for a specific period of time.
+- Reserve a bike for a specific period of time.[x]
 
-- Rate the bikes with a score of 1 to 5.
+- Rate the bikes with a score of 1 to 5.[x]
 
 - Cancel a reservation.
 

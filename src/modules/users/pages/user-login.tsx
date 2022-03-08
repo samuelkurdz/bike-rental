@@ -24,7 +24,7 @@ function LoginForm() {
       (user) => user.email === loginPayload.email
     );
     if (userInDatabase && userInDatabase.password === loginPayload.password) {
-      localStorage.setItem('user', userInDatabase.email);
+      localStorage.setItem('user', JSON.stringify(userInDatabase));
       navigate(`/app`);
     } else {
       alert("wrong login details");

@@ -2,11 +2,12 @@ import { Bike } from "../../interfaces";
 
 interface BikeTableProps {
   bikes: Bike[];
+  openNewReserveModal: (bikeId: string) => void;
 }
 
 const basicTableheader = ["model", "color", "location", "rating"];
 
-function BikeTable({ bikes }: BikeTableProps) {
+function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -57,12 +58,12 @@ function BikeTable({ bikes }: BikeTableProps) {
                         {rating}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a
-                          href="#"
+                        <button
+                          onClick={() => openNewReserveModal(id)}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
                           Reserve
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   )

@@ -5,10 +5,12 @@ import BikeTableFilter from "../../common/bike-table-filter";
 import Navbar from "../components/user-navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { Bike, TypeInterface } from "@interfaces";
+import { Bike, TypeInterface, User } from "@interfaces";
+import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
 
 function UserHome() {
   const navigate = useNavigate();
+  const [loggedInUser, SetLoggedInUser] = useState<User | undefined>(undefined);
   const bikes = useSelector((state: RootState) => state.bikes.data);
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
   const [filterByValue, SetFilterByValue] = useState("");
@@ -16,13 +18,18 @@ function UserHome() {
     name: "rating",
   });
 
+  const [isNewReserveModalOpen, toggelNewReserveModal] = useState(false);
+  const [bikeToReserveId, SetBikeToReserveId] = useState("");
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     console.log(loggedInUser);
 
     if (!loggedInUser) {
       navigate(`/login`);
+      return;
     }
+    SetLoggedInUser(JSON.parse(loggedInUser));
   }, []);
 
   const getFilterByValue = (value: string) => {
@@ -60,6 +67,16 @@ function UserHome() {
     SetFilteredBikes(newFilteredBikes);
   };
 
+  const closeNewReserveModal = () => {
+    toggelNewReserveModal(false);
+    SetBikeToReserveId("");
+  };
+
+  const openNewReserveModal = (bikeId: string) => {
+    toggelNewReserveModal(true);
+    SetBikeToReserveId(bikeId);
+  };
+
   return (
     <div>
       <Navbar />
@@ -67,7 +84,18 @@ function UserHome() {
         getFilterByValue={getFilterByValue}
         getFilterByType={getFilterByType}
       />
-      <BikeTable bikes={filteredBikes} />
+      <BikeTable
+        bikes={filteredBikes}
+        openNewReserveModal={openNewReserveModal}
+      />
+      {bikeToReserveId.trim() && loggedInUser?.id ? (
+        <ReserveBikeModal
+          userId={loggedInUser?.id}
+          bikeToReserveId={bikeToReserveId}
+          open={isNewReserveModalOpen}
+          closeModal={closeNewReserveModal}
+        />
+      ) : null}
     </div>
   );
 }
