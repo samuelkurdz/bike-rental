@@ -13,7 +13,7 @@ function UserHome() {
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
   const [filterByValue, SetFilterByValue] = useState("");
   const [filterByType, SetFilterByType] = useState<TypeInterface>({
-    name: "model",
+    name: "rating",
   });
 
   useEffect(() => {
@@ -27,42 +27,34 @@ function UserHome() {
 
   const getFilterByValue = (value: string) => {
     SetFilterByValue(value);
-    const filterType = filterByType.name;
     if (!value.trim()) {
       SetFilteredBikes(bikes);
       return;
     }
-    let newFilteredBikes: Bike[] = [];
-
-    if (filterType === "rating") {
-      newFilteredBikes = bikes.filter(
-        (bike) => bike[filterType] == +value
-      );
-    } else {
-      newFilteredBikes = bikes.filter((bike) =>
-        bike[filterType].toLowerCase().includes(value.toLowerCase())
-      );
-    }
-    SetFilteredBikes(newFilteredBikes);
+    handleFilter(filterByType, value);
   };
 
   const getFilterByType = (value: TypeInterface) => {
-    const filterType = value.name;
     SetFilterByType(value);
     if (!filterByValue.trim()) {
       SetFilteredBikes(bikes);
       return;
     }
 
+    handleFilter(value, filterByValue);
+  };
+
+  const handleFilter = (filterByType: TypeInterface, filterValue: string) => {
     let newFilteredBikes: Bike[] = [];
+    const filterType = filterByType.name;
 
     if (filterType === "rating") {
       newFilteredBikes = bikes.filter(
-        (bike) => bike[filterType] == +filterByValue
+        (bike) => bike[filterType] == +filterValue
       );
     } else {
       newFilteredBikes = bikes.filter((bike) =>
-        bike[filterType].toLowerCase().includes(filterByValue.toLowerCase())
+        bike[filterType].toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     SetFilteredBikes(newFilteredBikes);
