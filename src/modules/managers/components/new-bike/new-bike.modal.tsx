@@ -49,7 +49,6 @@ function NewbikeModal({ open, closeModal }: NewbikeModalInterface) {
       addBike({
         ...newBike,
         id: uuidv4(),
-        rating: 0,
         isAvailable: true,
       })
     );

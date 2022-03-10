@@ -6,7 +6,6 @@ export const bikes: Bike[] = [
     model: 'toyota',
     color: 'green',
     location: 'Lagos, Nigeria',
-    rating: 3,
     isAvailable: true,
   },
   {
@@ -14,7 +13,6 @@ export const bikes: Bike[] = [
     model: 'honda',
     color: 'red',
     location: 'Abuja, Nigeria',
-    rating: 4,
     isAvailable: false,
   },
   {
@@ -22,7 +20,6 @@ export const bikes: Bike[] = [
     model: 'benz',
     color: 'green',
     location: 'Lagos, Nigeria',
-    rating: 3,
     isAvailable: true,
   },
   {
@@ -30,7 +27,6 @@ export const bikes: Bike[] = [
     model: 'bmw',
     color: 'red',
     location: 'Abuja, Nigeria',
-    rating: 4,
     isAvailable: false,
   },
 ];

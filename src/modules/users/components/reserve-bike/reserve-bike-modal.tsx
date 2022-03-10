@@ -54,7 +54,6 @@ function ReserveBikeModal({
       newReserve.toPeriod
     );
 
-
     if (isDateRangeInvalid) {
       alert("From-Date cannnot be later than To-Date");
       return;

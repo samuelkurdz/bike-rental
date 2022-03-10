@@ -13,6 +13,7 @@ function UserHome() {
   const navigate = useNavigate();
   const [loggedInUser, SetLoggedInUser] = useState<User | undefined>(undefined);
   const bikes = useSelector((state: RootState) => state.bikes.data);
+  const reserves = useSelector((state: RootState) => state.reserves.data);
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
   const [filterByValue, SetFilterByValue] = useState("");
   const [filterByType, SetFilterByType] = useState<TypeInterface>({
@@ -58,9 +59,19 @@ function UserHome() {
     let newFilteredBikes: Bike[] = [];
     const filterType = filterByType.name;
 
+    // if (filterType === "rating") {
+    //   newFilteredBikes = bikes.filter(
+    //     (bike) => bike[filterType] == +filterValue
+    //   );
+    // } else {
     if (filterType === "rating") {
       newFilteredBikes = bikes.filter(
-        (bike) => bike[filterType] == +filterValue
+        (bike) =>
+          +filterValue ===
+          reserves
+            .filter((reserve) => reserve.bikeId === bike.id)
+            .reduce((sum, reserve) => sum + reserve.rating, 0) /
+            reserves.filter((reserve) => reserve.bikeId === bike.id).length
       );
     } else {
       newFilteredBikes = bikes.filter((bike) =>
