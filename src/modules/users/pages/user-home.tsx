@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BikeTable from "../../common/bike-table";
-import BikeTableFilter from "../../common/bike-table-filter";
+import BikeTable from "../components/bike-table";
+import BikeTableFilter from "../components/bike-table-filter";
 import Navbar from "../components/user-navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
