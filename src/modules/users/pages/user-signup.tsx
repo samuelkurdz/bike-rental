@@ -4,10 +4,11 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { users } from "../../../databases";
 import { CreateUserPayload } from "../../../interfaces";
+import { RootState } from "../../../redux/store";
 
 function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
@@ -15,7 +16,8 @@ function SignupForm() {
     email: "",
     password: "",
   });
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const users = useSelector((state: RootState) => state.users.data);
 
   useEffect(() => {}, []);
 

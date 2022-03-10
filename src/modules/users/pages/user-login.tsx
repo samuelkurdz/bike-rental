@@ -1,14 +1,17 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { users } from "../../../databases";
 import { LoginUserPayload } from "../../../interfaces";
+import { RootState } from "../../../redux/store";
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
     email: "",
     password: "",
   });
-  let navigate = useNavigate();
+
+  const navigate = useNavigate();
+  const users = useSelector((state: RootState) => state.users.data);
 
   const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     SetLoginPayload({

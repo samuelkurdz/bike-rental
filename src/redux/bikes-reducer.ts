@@ -14,7 +14,7 @@ export const bikesSlice = createSlice({
   initialState,
   reducers: {
     addBike: (state, action: PayloadAction<Bike>) => {
-      state.data.push(action.payload)
+      state.data.push(action.payload);
     },
     removeBike: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(user => user.id !== action.payload);

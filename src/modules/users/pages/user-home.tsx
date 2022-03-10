@@ -15,6 +15,7 @@ function UserHome() {
   const [loggedInUser, SetLoggedInUser] = useState<User | undefined>(undefined);
   const bikes = useSelector((state: RootState) => state.bikes.data);
   const reserves = useSelector((state: RootState) => state.reserves.data);
+
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
   const [filterByValue, SetFilterByValue] = useState("");
   const [filterByAvailableDate, SetFilterByAvailableDate] = useState("");

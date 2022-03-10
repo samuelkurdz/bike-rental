@@ -34,36 +34,37 @@ function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {bikes.map(
-                  ({ model, color, location, id, isAvailable }) => (
-                    <tr key={id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{model}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">{color}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {location}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {reserves
-                          .filter((reserve) => reserve.bikeId === id)
-                          .reduce((sum, reserve) => sum + reserve.rating, 0) /
+                {bikes.map(({ model, color, location, id, isAvailable }) => (
+                  <tr key={id}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900">{model}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">{color}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {location}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {reserves.filter((reserve) => reserve.bikeId === id)
+                        .length
+                        ? reserves
+                            .filter((reserve) => reserve.bikeId === id)
+                            .reduce((sum, reserve) => sum + reserve.rating, 0) /
                           reserves.filter((reserve) => reserve.bikeId === id)
-                            .length}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button
-                          onClick={() => openNewReserveModal(id)}
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Reserve
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                )}
+                            .length
+                        : 0}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button
+                        onClick={() => openNewReserveModal(id)}
+                        className="text-indigo-600 hover:text-indigo-900"
+                      >
+                        Reserve
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

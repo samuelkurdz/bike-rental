@@ -1,6 +1,5 @@
 import { Reserve, Bike } from "../../../interfaces";
 
-
 interface ManageBikesTableProps {
   bikes: Bike[];
   reserves: Reserve[];
@@ -70,11 +69,14 @@ function ManageBikesTable({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {reserves
-                          .filter((reserve) => reserve.bikeId === id)
-                          .reduce((sum, reserve) => sum + reserve.rating, 0) /
+                      {reserves.filter((reserve) => reserve.bikeId === id)
+                        .length
+                        ? reserves
+                            .filter((reserve) => reserve.bikeId === id)
+                            .reduce((sum, reserve) => sum + reserve.rating, 0) /
                           reserves.filter((reserve) => reserve.bikeId === id)
-                            .length}
+                            .length
+                        : 0}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

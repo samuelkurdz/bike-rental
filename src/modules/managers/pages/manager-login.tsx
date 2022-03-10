@@ -8,7 +8,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
     event
