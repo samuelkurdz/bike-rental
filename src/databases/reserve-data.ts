@@ -45,8 +45,8 @@ export const reserves: Reserve[] = [
     id: 'b1c4a89e-4905-5e3c-b57f-dc92627d011e',
     bikeId: 'd9428888-122b-11e1-b85c-61cd3cbb3210',
     userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-    fromPeriod: '2022-02-10',
-    toPeriod: '2022-02-13',
+    fromPeriod: '2022-03-10',
+    toPeriod: '2022-03-13',
     rating: 0
   },
 ]

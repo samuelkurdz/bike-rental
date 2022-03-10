@@ -8,6 +8,7 @@ import { RootState } from "../../../redux/store";
 import { Bike, TypeInterface, User } from "@interfaces";
 import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
 import UserReservesDetailsModal from "../components/user-reserves-details";
+import { isDateWithInRange } from "../../../utils/isDateWithInRange";
 
 function UserHome() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function UserHome() {
   const reserves = useSelector((state: RootState) => state.reserves.data);
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
   const [filterByValue, SetFilterByValue] = useState("");
+  const [filterByAvailableDate, SetFilterByAvailableDate] = useState("");
   const [filterByType, SetFilterByType] = useState<TypeInterface>({
     name: "rating",
   });
@@ -35,6 +37,22 @@ function UserHome() {
     }
     SetLoggedInUser(JSON.parse(loggedInUser));
   }, []);
+
+  const getFilterByAvailableDate = (value: string) => {
+    SetFilterByAvailableDate(value);
+
+    const nonAvailableBikes = bikes.filter((bike) =>
+      reserves
+        .filter((reserve) => reserve.bikeId === bike.id)
+        .some((resBike) =>
+          isDateWithInRange(resBike.fromPeriod, resBike.toPeriod, value)
+        )
+    );
+    const availableBikes = bikes.filter(
+      (bike) => !nonAvailableBikes.includes(bike)
+    );
+    SetFilteredBikes(availableBikes);
+  };
 
   const getFilterByValue = (value: string) => {
     SetFilterByValue(value);
@@ -59,11 +77,6 @@ function UserHome() {
     let newFilteredBikes: Bike[] = [];
     const filterType = filterByType.name;
 
-    // if (filterType === "rating") {
-    //   newFilteredBikes = bikes.filter(
-    //     (bike) => bike[filterType] == +filterValue
-    //   );
-    // } else {
     if (filterType === "rating") {
       newFilteredBikes = bikes.filter(
         (bike) =>
@@ -102,8 +115,9 @@ function UserHome() {
     <div>
       <Navbar openReservesModal={openReservesModal} />
       <BikeTableFilter
-        getFilterByValue={getFilterByValue}
         getFilterByType={getFilterByType}
+        getFilterByValue={getFilterByValue}
+        getFilterByAvailableDate={getFilterByAvailableDate}
       />
       <BikeTable
         bikes={filteredBikes}

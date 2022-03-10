@@ -29,21 +29,31 @@ function classNames(...classes: string[]) {
 }
 interface FilterInterface {
   getFilterByValue: (value: string) => void;
+  getFilterByAvailableDate: (value: string) => void;
   getFilterByType: (value: TypeInterface) => void;
 }
 
 export default function BikeTableFilter({
-  getFilterByValue,
   getFilterByType,
+  getFilterByValue,
+  getFilterByAvailableDate
 }: FilterInterface) {
   const [selected, setSelected] = useState(filterOptions[3]);
   const [filterByValue, SetFilterByValue] = useState("");
+  const [filterByAvailableDate, SetFilterByAvailableDate] = useState("");
 
   const handleFilterInputChange: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
     SetFilterByValue(event.currentTarget.value);
     getFilterByValue(event.currentTarget.value);
+  };
+
+  const handleFilterAvailableDate: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    SetFilterByAvailableDate(event.currentTarget.value);
+    getFilterByAvailableDate(event.currentTarget.value);
   };
 
   return (
@@ -58,7 +68,7 @@ export default function BikeTableFilter({
         name="filterInput"
         id="filterInput"
         value={filterByValue}
-        onChange={(e) => handleFilterInputChange(e)}
+        onChange={handleFilterInputChange}
         className="focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-64 block px-4 sm:text-sm border-gray-300 rounded-md"
         placeholder="filter by"
       />
@@ -66,7 +76,8 @@ export default function BikeTableFilter({
         <p className="text-sm font-medium text-gray-700">Date Available</p>
         <input
           type="date"
-          onChange={(e) => console.log(e.target.value)}
+          value={filterByAvailableDate}
+          onChange={handleFilterAvailableDate}
           className="focus:ring-indigo-500 focus:border-indigo-500 w-full md:w-64 block px-4 sm:text-sm border-gray-300 rounded-md"
         />
       </div>
