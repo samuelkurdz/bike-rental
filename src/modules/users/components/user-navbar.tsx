@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { User } from "../../../interfaces";
 
 interface NavbarProps {
+  user: User|undefined;
   openReservesModal: () => void;
 }
 
-// function Navbar({}: NavbarProps) {
-function Navbar({ openReservesModal }: NavbarProps) {
+function Navbar({ openReservesModal, user }: NavbarProps) {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -39,7 +40,7 @@ function Navbar({ openReservesModal }: NavbarProps) {
               Logout
             </button>
             <button className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
-              Welcome, Samuel
+              Welcome, {user?.username}
             </button>
           </div>
         </div>

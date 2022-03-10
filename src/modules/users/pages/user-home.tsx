@@ -30,7 +30,6 @@ function UserHome() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    // console.log(loggedInUser);
 
     if (!loggedInUser) {
       navigate(`/login`);
@@ -116,7 +115,7 @@ function UserHome() {
 
   return (
     <div>
-      <Navbar openReservesModal={openReservesModal} />
+      <Navbar user={loggedInUser} openReservesModal={openReservesModal} />
       <BikeTableFilter
         getFilterByType={getFilterByType}
         getFilterByValue={getFilterByValue}

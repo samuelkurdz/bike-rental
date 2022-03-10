@@ -1,21 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Manager } from "../../interfaces";
 import ManagerNavbar from "./components/manager-navbar";
 
 function ManagerOutlet() {
-  let navigate = useNavigate();
+  const [loggedInManager, SetLoggedInManager] = useState<Manager | undefined>(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const loggedInManager = localStorage.getItem("manager");
-    console.log(loggedInManager);
+    const loggedInManagerData = localStorage.getItem("manager");
 
-    if (!loggedInManager) {
+    if (!loggedInManagerData) {
       navigate(`/manager-login`);
+      return;
     }
+    SetLoggedInManager(JSON.parse(loggedInManagerData));
   }, []);
   return (
     <>
-      <ManagerNavbar />
+      <ManagerNavbar manager={loggedInManager} />
       <Outlet></Outlet>
     </>
   );

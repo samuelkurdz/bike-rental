@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Manager } from "../../../interfaces";
 
-function ManagerNavbar() {
+interface NavProps {
+  manager: Manager | undefined;
+}
+function ManagerNavbar({manager}: NavProps) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("manager");
+    navigate(`/manager-login`);
+  };
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -31,10 +40,16 @@ function ManagerNavbar() {
               Managers
             </Link>
             <button
+            onClick={handleLogout}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              Logout
+            </button>
+            <Link to="/manager"
               className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
             >
-              Welcome, manager
-            </button>
+              Welcome, {manager?.username}
+            </Link>
           </div>
         </div>
       </div>

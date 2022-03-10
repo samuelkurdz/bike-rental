@@ -29,8 +29,11 @@ function LoginForm() {
       (manager) => manager.email === loginPayload.email
     );
 
-    if (managerInDatabase && managerInDatabase.password === loginPayload.password) {
-      localStorage.setItem('manager', managerInDatabase.email);
+    if (
+      managerInDatabase &&
+      managerInDatabase.password === loginPayload.password
+    ) {
+      localStorage.setItem("manager", JSON.stringify(managerInDatabase));
       navigate(`/manager`);
     } else {
       alert("wrong login details");
