@@ -1,9 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 interface NavbarProps {
   openReservesModal: () => void;
 }
 
 // function Navbar({}: NavbarProps) {
 function Navbar({ openReservesModal }: NavbarProps) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate(`/`);
+  };
+
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -23,6 +31,12 @@ function Navbar({ openReservesModal }: NavbarProps) {
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Reserved Bikes
+            </button>
+            <button
+              onClick={handleLogout}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              Logout
             </button>
             <button className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
               Welcome, Samuel
