@@ -1,7 +1,8 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginUserPayload } from "../../../interfaces/user";
-import { managers } from "../../../databases";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
@@ -9,6 +10,7 @@ function LoginForm() {
     password: "",
   });
   const navigate = useNavigate();
+  const managers = useSelector((state: RootState) => state.managers.data);
 
   const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
     event

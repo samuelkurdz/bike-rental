@@ -21,10 +21,10 @@ export const bikesSlice = createSlice({
     },
     updateBike: (state, action: PayloadAction<Bike>) => {
       const index = state.data.findIndex(bike => bike.id === action.payload.id);
-  
+
       if (index === -1) return;
       state.data[index] = action.payload;
-  
+
     }
   },
 })
