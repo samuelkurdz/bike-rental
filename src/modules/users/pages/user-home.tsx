@@ -5,10 +5,10 @@ import BikeTableFilter from "../components/bike-table-filter";
 import Navbar from "../components/user-navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { Bike, TypeInterface, User } from "@interfaces";
 import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
 import UserReservesDetailsModal from "../components/user-reserves-details";
 import { isDateWithInRange } from "../../../utils/isDateWithInRange";
+import { Bike, TypeInterface, User } from "../../../interfaces";
 
 function UserHome() {
   const navigate = useNavigate();

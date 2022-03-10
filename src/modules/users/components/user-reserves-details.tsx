@@ -3,8 +3,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { Bike, Reserve, User } from "../../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "redux/store";
 import { removeReserve } from "../../../redux/reserve-reducer";
+import { RootState } from "../../../redux/store";
 
 interface BikeDetailsModalInterface {
   open: boolean;

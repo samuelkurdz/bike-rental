@@ -1,11 +1,11 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ManagersTable from "../components/manage-admin-tables";
 import NewManager from "../components/new-manager/new-manager";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeManager } from "../../../redux/managers-reducer";
-import { Manager } from "@interfaces";
-import { useState } from "react";
 import EditManager from '../components/edit-manager/edit-manager';
+import { Manager } from "../../../interfaces";
 
 function ManageAdmin() {
   const dispatch = useDispatch();

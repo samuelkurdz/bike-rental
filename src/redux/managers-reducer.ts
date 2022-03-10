@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Manager } from '@interfaces';
 import { managers } from '../databases';
+import { Manager } from '../interfaces';
 
 export interface ManagersState {
   data: Manager[]

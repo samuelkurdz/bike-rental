@@ -1,13 +1,13 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import ManageUsersTable from "../components/manage-users-table";
 import UserDetailsModal from "../components/user-details-modal";
 import NewUser from "../components/new-user/new-user";
-import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeUser } from "../../../redux/users-reducer";
 import EditUser from "../components/edit-user/edit-user";
-import { User } from "@interfaces";
 import { removeReserve } from "../../../redux/reserve-reducer";
+import { User } from "../../../interfaces";
 
 function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);

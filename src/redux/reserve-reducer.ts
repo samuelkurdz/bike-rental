@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { reserves } from '../databases';
-import { Reserve } from '@interfaces';
+import { Reserve } from '../interfaces';
+// import { Reserve } from '@interfaces';
 
 export interface ReservesState {
   data: Reserve[]
