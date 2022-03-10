@@ -4,11 +4,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { CreateUserPayload } from "../../../interfaces";
 import { RootState } from "../../../redux/store";
+import { addUser } from "../../../redux/users-reducer";
 
 function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
@@ -17,6 +18,7 @@ function SignupForm() {
     password: "",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.data);
 
   useEffect(() => {}, []);
@@ -48,7 +50,8 @@ function SignupForm() {
       return;
     }
 
-    users.push({ ...newUser, id: uuidv4() });
+    dispatch(addUser({ ...newUser, id: uuidv4() }));
+    SetNewUser({ username: "", email: "", password: "" });
     console.log(users);
     navigate("login");
   };
