@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import UserLayout from "./modules/users/user-layout";
 import ManagerOutlet from './modules/managers/manager-layout';
@@ -18,7 +18,7 @@ function App() {
     <div className="min-h-screen overflow-hidden max-w-[100vw]">
       <Routes>
         {/* handle wild cards and '/' routes*/}
-        {/* <Route path="*" element={<Navigate to="/app" />} /> */}
+        <Route path="*" element={<Navigate to="/app" />} />
 
         <Route path="manager-login" element={<ManagerLogin />} />
         <Route path="login" element={<Login />} />
