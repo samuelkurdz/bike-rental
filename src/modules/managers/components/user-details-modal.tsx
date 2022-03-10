@@ -106,39 +106,41 @@ export default UserDetailsModal;
 function BikeTable(user: User | undefined, reserves: Reserve[], bikes: Bike[]) {
   const headerCells = ["Model", "From", "To"];
   return (
-    <table className="min-w-full divide-y divide-gray-200">
-      <thead className="bg-gray-50">
-        <tr>
-          {headerCells.map((cell) => (
-            <th
-              key={cell}
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              {cell}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {reserves
-          .filter((res) => res.userId === user?.id)
-          .map(({ id, bikeId, toPeriod, fromPeriod }) => (
-            <tr key={id}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
-                  {bikes.find((bike) => bike.id === bikeId)?.model}
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{fromPeriod}</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{toPeriod}</div>
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            {headerCells.map((cell) => (
+              <th
+                key={cell}
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                {cell}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {reserves
+            .filter((res) => res.userId === user?.id)
+            .map(({ id, bikeId, toPeriod, fromPeriod }) => (
+              <tr key={id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-900">
+                    {bikes.find((bike) => bike.id === bikeId)?.model}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-900">{fromPeriod}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-900">{toPeriod}</div>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
