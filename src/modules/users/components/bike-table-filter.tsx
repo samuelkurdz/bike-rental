@@ -36,7 +36,7 @@ interface FilterInterface {
 export default function BikeTableFilter({
   getFilterByType,
   getFilterByValue,
-  getFilterByAvailableDate
+  getFilterByAvailableDate,
 }: FilterInterface) {
   const [selected, setSelected] = useState(filterOptions[3]);
   const [filterByValue, SetFilterByValue] = useState("");
@@ -45,6 +45,11 @@ export default function BikeTableFilter({
   const handleFilterInputChange: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
+
+    if (event.target.value.trim()) {
+      SetFilterByAvailableDate("");
+      getFilterByAvailableDate("");
+    }
     SetFilterByValue(event.currentTarget.value);
     getFilterByValue(event.currentTarget.value);
   };
@@ -52,6 +57,10 @@ export default function BikeTableFilter({
   const handleFilterAvailableDate: ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
+    if (event.target.value.trim()) {
+      SetFilterByValue("");
+      getFilterByValue("");
+    }
     SetFilterByAvailableDate(event.currentTarget.value);
     getFilterByAvailableDate(event.currentTarget.value);
   };

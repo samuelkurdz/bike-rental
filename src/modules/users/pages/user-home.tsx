@@ -39,8 +39,10 @@ function UserHome() {
   }, []);
 
   const getFilterByAvailableDate = (value: string) => {
+    if (!value.trim()) {
+      SetFilteredBikes(bikes);
+    }
     SetFilterByAvailableDate(value);
-
     const nonAvailableBikes = bikes.filter((bike) =>
       reserves
         .filter((reserve) => reserve.bikeId === bike.id)
