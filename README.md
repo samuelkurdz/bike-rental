@@ -1,4 +1,4 @@
-# [Bike Rentals Project](https://bikerentals.netlify.app/)
+# [Bike Rentals Project](https://bikerentals.netlify.app/) https://bikerentals.netlify.app/
 ## Installation
 After downloading the project
 
@@ -37,7 +37,7 @@ yarn build
 ## How to Use
 ### As a User
 
-- Go to the [Bike Rentals](https://bikerentals.netlify.app/) web app
+- Go to the [Bike Rentals](https://bikerentals.netlify.app/) web app [https://bikerentals.netlify.app/]
 - As the system does not detect a logged in account, it routes you to login
 - You have the option to create an account or login as an existing user (scroll down to see data of an existing user if you prefer the login choice)
 - If you create a new account, you are routed back to login, use the details of the new account to login.
