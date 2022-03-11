@@ -1,4 +1,4 @@
-# [Bike Rentals Project](https://bikerentals.netlify.app/) https://bikerentals.netlify.app/
+# [Bike Rentals Project](https://bikerentals.netlify.app/) 
 ## Installation
 After downloading the project
 
