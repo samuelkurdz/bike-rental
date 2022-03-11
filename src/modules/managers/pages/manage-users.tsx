@@ -7,7 +7,7 @@ import { RootState, removeUser, removeReserve } from "@store";
 import EditUser from "../components/edit-user/edit-user";
 import { User } from "@interfaces";
 
-function ManageUsers() {
+export function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);
   const [user, setUser] = useState<User | undefined>(undefined);
 
@@ -81,4 +81,3 @@ function ManageUsers() {
   );
 }
 
-export default ManageUsers;

@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@store";
 
-function ManagerHome() {
+export function ManagerHome() {
   const bikes = useSelector((state: RootState) => state.bikes.data);
   const managers = useSelector((state: RootState) => state.managers.data);
   const users = useSelector((state: RootState) => state.users.data);
   const reserves = useSelector((state: RootState) => state.reserves.data);
   return (
     <div className="py-20 px-10 text-center">
-      <h1 className="inline-block text-2xl font-bold text-slate-900 tracking-tight mb-10">Statistics</h1>
+      <h1 className="inline-block text-2xl font-bold text-slate-900 tracking-tight mb-10">
+        Statistics
+      </h1>
       <div className="flex flex-wrap items-center justify-center gap-6">
         <div className="shadow-md min-w-[250px] p-4">
           <h3 className="inline-block text-xl font-bold text-slate-900 tracking-tight">
@@ -38,5 +40,3 @@ function ManagerHome() {
     </div>
   );
 }
-
-export default ManagerHome;

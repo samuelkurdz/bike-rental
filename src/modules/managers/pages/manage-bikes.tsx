@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, removeBike, removeReserve } from "@store";
 import { Bike } from "@interfaces";
 
-function ManageBikes() {
+export function ManageBikes() {
   const [bike, setBike] = useState<Bike | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -82,5 +82,3 @@ function ManageBikes() {
     </div>
   );
 }
-
-export default ManageBikes;

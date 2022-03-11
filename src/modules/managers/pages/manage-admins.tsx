@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ManagersTable from "../components/manage-admin-tables";
 import NewManager from "../components/new-manager/new-manager";
-import { RootState, removeManager} from "@store";
-import EditManager from '../components/edit-manager/edit-manager';
+import { RootState, removeManager } from "@store";
+import EditManager from "../components/edit-manager/edit-manager";
 import { Manager } from "@interfaces";
 
-function ManageAdmin() {
+export function ManageAdmins() {
   const dispatch = useDispatch();
   const managers = useSelector((state: RootState) => state.managers.data);
 
@@ -49,5 +49,3 @@ function ManageAdmin() {
     </div>
   );
 }
-
-export default ManageAdmin;

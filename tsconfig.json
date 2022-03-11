@@ -20,6 +20,7 @@
       "@interfaces": ["src/interfaces"],
       "@utils": ["src/utils"],
       "@store": ["src/redux"],
+      "@managers": ["src/modules/managers"],
     },
   },
   "include": ["src"],

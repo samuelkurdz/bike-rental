@@ -13,7 +13,7 @@ export default defineConfig({
       { find: '@interfaces', replacement: path.resolve(__dirname, './src/interfaces') },
       { find: '@utils', replacement: path.resolve(__dirname, './src/utils') },
       { find: '@store', replacement: path.resolve(__dirname, './src/redux') },
-      // { find: '@mixins', replacement: path.resolve(__dirname, './src/mixins') },
+      { find: '@managers', replacement: path.resolve(__dirname, './src/modules/managers') },
       // { find: '@svg', replacement: path.resolve(__dirname, './src/svg') },
       // { find: '@models', replacement: path.resolve(__dirname, './src/models') },
       // { find: '@components', replacement: path.resolve(__dirname, './src/components') },

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import ManagerNavbar from "./components/manager-navbar";
 
-function ManagerOutlet() {
+export function ManagerOutlet() {
   const [loggedInManager, SetLoggedInManager] = useState<Manager | undefined>(undefined);
   const navigate = useNavigate();
 
@@ -23,5 +23,3 @@ function ManagerOutlet() {
     </>
   );
 }
-
-export default ManagerOutlet;

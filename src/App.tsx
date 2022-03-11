@@ -1,17 +1,20 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import UserLayout from "./modules/users/user-layout";
-import ManagerOutlet from './modules/managers/manager-layout';
 
 import Login from "./modules/users/pages/user-login";
 import Signup from "./modules/users/pages/user-signup";
-import ManagerLogin from "./modules/managers/pages/manager-login";
 
 import UserHome from "./modules/users/pages/user-home";
-import ManagerHome from "./modules/managers/pages/manager-home";
-import ManageBikes from './modules/managers/pages/manage-bikes';
-import ManageUsers from './modules/managers/pages/manage-users';
-import ManageAdmins from './modules/managers/pages/manage-admins';
+
+import {
+  ManageAdmins,
+  ManageBikes,
+  ManagerHome,
+  ManagerLogin,
+  ManagerOutlet,
+  ManageUsers,
+} from "@managers";
 
 function App() {
   return (
