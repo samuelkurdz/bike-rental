@@ -1,6 +1,5 @@
-# Bike Rentals Project
+# [Bike Rentals Project](https://bikerentals.netlify.app/)
 
-### project hosted url => [Bike Rentals](https://bikerentals.netlify.app/)
 
 ## How to Use
 
@@ -33,6 +32,13 @@
 - email: kurdz@gmail.com, password: qwerty (master admin: can neither be edited nor deleted)
 - email: green@gmail.com, password: qwerty
 
+
+### Project Setup
+- built with React, TypeScript, Vite, Redux Toolkit
+- Routing with React-Router-Dom (v6)
+- styled with TailwindCSS
+- Data persisted with redux-persist
+- App hosted on Netlify
 # The requirements for the test project are:
 
 ### Write an application to manage bike rentals:
