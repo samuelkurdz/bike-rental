@@ -9,7 +9,7 @@ interface BikeTableProps {
 
 const basicTableheader = ["model", "color", "location", "rating"];
 
-function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
+export function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
   const reserves = useSelector((state: RootState) => state.reserves.data);
   return (
     <div className="flex flex-col">
@@ -73,5 +73,3 @@ function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
     </div>
   );
 }
-
-export default BikeTable;

@@ -10,7 +10,7 @@ interface BikeDetailsModalInterface {
   user: User;
   closeModal: () => void;
 }
-function UserReservesDetailsModal({
+export function UserReservesDetailsModal({
   open,
   user,
   closeModal,
@@ -101,7 +101,6 @@ function UserReservesDetailsModal({
   );
 }
 
-export default UserReservesDetailsModal;
 
 function BikeTable(user: User, reserves: Reserve[], bikes: Bike[]) {
   const headerCells = ["Model", "From", "To"];

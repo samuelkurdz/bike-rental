@@ -41,16 +41,6 @@ export const store = configureStore({
     }),
 });
 
-
-// export const store = configureStore({
-//   reducer: {
-//     users: userReducer,
-//     bikes: bikeReducer,
-//     managers: managerReducer,
-//     reserves: reserveReducer,
-//   },
-// })
-
 export const persistor = persistStore(store);
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

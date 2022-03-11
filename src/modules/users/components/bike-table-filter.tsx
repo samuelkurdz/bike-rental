@@ -33,7 +33,7 @@ interface FilterInterface {
   getFilterByType: (value: TypeInterface) => void;
 }
 
-export default function BikeTableFilter({
+export function BikeTableFilter({
   getFilterByType,
   getFilterByValue,
   getFilterByAvailableDate,

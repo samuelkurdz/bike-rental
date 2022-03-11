@@ -1,4 +1,3 @@
-import { Transition, Dialog } from "@headlessui/react";
 import {
   ChangeEventHandler,
   FormEventHandler,
@@ -6,10 +5,11 @@ import {
   useRef,
   useState,
 } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Transition, Dialog } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState, addReserve } from "@store";
-import { useSelector, useDispatch } from "react-redux";
-import { AddReserveForm } from "./new-reserve-form";
+import { AddReserveForm } from "@user-components";
 import { CreateReservePayload } from "@interfaces";
 import { isFromHigherThanToDate, isDateWithInRange } from "@utils";
 
@@ -20,7 +20,7 @@ interface ReserveBikeModalInterface {
   closeModal: () => void;
 }
 
-function ReserveBikeModal({
+export function ReserveBikeModal({
   closeModal,
   open,
   userId,
@@ -157,5 +157,3 @@ function ReserveBikeModal({
     </Transition.Root>
   );
 }
-
-export default ReserveBikeModal;

@@ -6,7 +6,7 @@ interface NavbarProps {
   openReservesModal: () => void;
 }
 
-function Navbar({ openReservesModal, user }: NavbarProps) {
+export function Navbar({ openReservesModal, user }: NavbarProps) {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -48,5 +48,3 @@ function Navbar({ openReservesModal, user }: NavbarProps) {
     </nav>
   );
 }
-
-export default Navbar;
