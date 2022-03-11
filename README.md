@@ -1,7 +1,40 @@
 # [Bike Rentals Project](https://bikerentals.netlify.app/)
+## Installation
+After downloading the project
+
+```bash
+## npm
+npm install
+
+or
+
+# Yarn
+yarn
+
+
+## run app server
+
+# npm
+npm run dev
+
+or
+
+# Yarn
+yarn dev
+
+
+## build the app for production
+
+# npm
+npm run build
+
+or
+
+# Yarn
+yarn build
+```
 
 ## How to Use
-
 ### As a User
 
 - Go to the [Bike Rentals](https://bikerentals.netlify.app/) web app
