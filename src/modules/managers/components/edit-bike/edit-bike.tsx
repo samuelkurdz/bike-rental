@@ -19,7 +19,7 @@ interface EditBikeDetailsModalInterface {
   closeModal: () => void;
 }
 
-function EditBike({ closeModal, bike, open }: EditBikeDetailsModalInterface) {
+export function EditBike({ closeModal, bike, open }: EditBikeDetailsModalInterface) {
   const [updatedBike, SetUpdatedBike] = useState<Bike>(bike);
 
   const Bikes = useSelector((state: RootState) => state.bikes.data);
@@ -112,5 +112,3 @@ function EditBike({ closeModal, bike, open }: EditBikeDetailsModalInterface) {
     </Transition.Root>
   );
 }
-
-export default EditBike;

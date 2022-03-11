@@ -10,7 +10,8 @@ interface BikeDetailsModalInterface {
   bike: Bike | undefined;
   closeModal: () => void;
 }
-function BikeDetailsModal({
+
+export function BikeDetailsModal({
   open,
   bike,
   closeModal,
@@ -102,8 +103,6 @@ function BikeDetailsModal({
     </Transition.Root>
   );
 }
-
-export default BikeDetailsModal;
 
 function UsersTable(
   bike: Bike | undefined,

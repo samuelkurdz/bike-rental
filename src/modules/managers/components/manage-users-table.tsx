@@ -11,7 +11,7 @@ interface UsersTableProps {
 
 const basicTableheader = ["Username", "Email", "No of Reserved Bikes"];
 
-function ManageUsersTable({
+export function ManageUsersTable({
   users,
   reserves,
   selectUser,
@@ -83,5 +83,3 @@ function ManageUsersTable({
     </div>
   );
 }
-
-export default ManageUsersTable;

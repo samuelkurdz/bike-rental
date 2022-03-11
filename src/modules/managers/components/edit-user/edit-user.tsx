@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { EditUserForm } from './edit-user-form';
+import { EditUserForm } from '@manager-components';
 import { useSelector, useDispatch } from "react-redux";
 import { User } from "@interfaces";
 import { RootState, updateUser } from "@store";
@@ -17,7 +17,7 @@ interface EditUserDetailsModalInterface {
   closeModal: () => void;
 }
 
-function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
+export function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
   const [updatedUser, SetUpdatedUser] = useState<User>(user);
 
   const users = useSelector((state: RootState) => state.users.data);
@@ -118,5 +118,3 @@ function EditUser({ closeModal, user, open }: EditUserDetailsModalInterface) {
     </Transition.Root>
   );
 }
-
-export default EditUser;

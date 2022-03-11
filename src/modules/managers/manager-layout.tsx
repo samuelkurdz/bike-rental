@@ -1,7 +1,7 @@
-import { Manager } from "@interfaces";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import ManagerNavbar from "./components/manager-navbar";
+import { Manager } from "@interfaces";
+import { ManagerNavbar } from "@manager-components";
 
 export function ManagerOutlet() {
   const [loggedInManager, SetLoggedInManager] = useState<Manager | undefined>(undefined);

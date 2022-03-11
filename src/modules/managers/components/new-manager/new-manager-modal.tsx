@@ -8,16 +8,16 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { NewManagerForm } from "./new-manager-form";
 import { CreateManagerPayload } from "@interfaces";
 import { addManager, RootState } from "@store";
+import { NewManagerForm } from "@manager-components";
 
 interface NewManagerModalInterface {
   open: boolean;
   closeModal: () => void;
 }
 
-function NewManagerModal({ open, closeModal }: NewManagerModalInterface) {
+export function NewManagerModal({ open, closeModal }: NewManagerModalInterface) {
   const [newManager, SetNewManager] = useState<CreateManagerPayload>({
     email: "",
     username: "",
@@ -122,5 +122,3 @@ function NewManagerModal({ open, closeModal }: NewManagerModalInterface) {
     </Transition.Root>
   );
 }
-
-export default NewManagerModal;

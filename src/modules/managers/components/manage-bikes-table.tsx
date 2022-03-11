@@ -17,7 +17,7 @@ const basicTableheader = [
   "rating",
 ];
 
-function ManageBikesTable({
+export function ManageBikesTable({
   bikes,
   reserves,
   selectBike,
@@ -107,4 +107,3 @@ function ManageBikesTable({
   );
 }
 
-export default ManageBikesTable;

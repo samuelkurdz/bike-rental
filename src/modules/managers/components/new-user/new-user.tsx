@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
-import NewUserModal from './new-user-modal';
+import { NewUserModal } from "@manager-components";
 
-
-export default function NewUser() {
+export function NewUser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeUserDetailsModal = () => {

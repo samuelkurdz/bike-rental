@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
-import NewBikeModal from './new-bike.modal';
+import { NewBikeModal } from "@manager-components";
 
 
-export default function NewBike() {
+export function NewBike() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeUserDetailsModal = () => {

@@ -8,16 +8,16 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";;
-import { NewBikeForm } from "./new-bike-form";
 import { RootState, addBike } from "@store";
 import { CreateBikePayload } from "@interfaces";
+import { NewBikeForm } from "@manager-components";
 
 interface NewbikeModalInterface {
   open: boolean;
   closeModal: () => void;
 }
 
-function NewbikeModal({ open, closeModal }: NewbikeModalInterface) {
+export function NewBikeModal({ open, closeModal }: NewbikeModalInterface) {
   const [newBike, SetNewbike] = useState<CreateBikePayload>({
     model: "",
     color: "",
@@ -125,5 +125,3 @@ function NewbikeModal({ open, closeModal }: NewbikeModalInterface) {
     </Transition.Root>
   );
 }
-
-export default NewbikeModal;

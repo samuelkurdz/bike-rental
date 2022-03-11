@@ -9,7 +9,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, addUser } from "@store";
-import { NewUserForm } from "./new-user-form";
+import { NewUserForm } from "@manager-components";
 import { CreateUserPayload } from "@interfaces";
 
 interface NewuserModalInterface {
@@ -17,7 +17,7 @@ interface NewuserModalInterface {
   closeModal: () => void;
 }
 
-function NewUserModal({ open, closeModal }: NewuserModalInterface) {
+export function NewUserModal({ open, closeModal }: NewuserModalInterface) {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
     username: "",
     email: "",
@@ -124,5 +124,3 @@ function NewUserModal({ open, closeModal }: NewuserModalInterface) {
     </Transition.Root>
   );
 }
-
-export default NewUserModal;

@@ -1,11 +1,12 @@
-import { Manager } from "@interfaces";
 import { Link, useNavigate } from "react-router-dom";
+import { Manager } from "@interfaces";
 
 
 interface NavProps {
   manager: Manager | undefined;
 }
-function ManagerNavbar({manager}: NavProps) {
+
+export function ManagerNavbar({manager}: NavProps) {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("manager");
@@ -57,5 +58,3 @@ function ManagerNavbar({manager}: NavProps) {
     </nav>
   );
 }
-
-export default ManagerNavbar;

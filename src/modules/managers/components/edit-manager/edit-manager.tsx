@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { EditManagerForm } from './edit-manager-form';
+import { EditManagerForm } from '@manager-components';
 import { useSelector, useDispatch } from "react-redux";
 import { Manager } from "@interfaces";
 import { RootState, updateManager } from "@store";
@@ -18,7 +18,7 @@ interface EditManagerDetailsModalInterface {
   closeModal: () => void;
 }
 
-function EditManager({
+export function EditManager({
   closeModal,
   manager,
   open,
@@ -129,5 +129,3 @@ function EditManager({
     </Transition.Root>
   );
 }
-
-export default EditManager;

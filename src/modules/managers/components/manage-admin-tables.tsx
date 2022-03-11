@@ -1,6 +1,5 @@
 import { Manager } from "@interfaces";
 
-
 interface ManagersTableProps {
   managers: Manager[];
   handleEditManager: (id: string) => void;
@@ -9,7 +8,7 @@ interface ManagersTableProps {
 
 const basicTableheader = ["username", "Email"];
 
-function ManagersTable({
+export function ManagersTable({
   managers,
   handleDeleteManager,
   handleEditManager,
@@ -73,5 +72,3 @@ function ManagersTable({
     </div>
   );
 }
-
-export default ManagersTable;

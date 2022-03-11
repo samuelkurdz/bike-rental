@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
-import NewManagerModal from "./new-manager-modal";
+import { NewManagerModal } from "@manager-components";
 
-function NewManager() {
+export function NewManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeManagerModal = () => {
@@ -25,5 +25,3 @@ function NewManager() {
     </>
   );
 }
-
-export default NewManager;

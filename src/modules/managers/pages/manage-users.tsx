@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ManageUsersTable from "../components/manage-users-table";
-import UserDetailsModal from "../components/user-details-modal";
-import NewUser from "../components/new-user/new-user";
 import { RootState, removeUser, removeReserve } from "@store";
-import EditUser from "../components/edit-user/edit-user";
 import { User } from "@interfaces";
+import {
+  UserDetailsModal,
+  ManageUsersTable,
+  NewUser,
+  EditUser
+} from "@manager-components";
 
 export function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);
@@ -80,4 +82,3 @@ export function ManageUsers() {
     </div>
   );
 }
-

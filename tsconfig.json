@@ -21,6 +21,7 @@
       "@utils": ["src/utils"],
       "@store": ["src/redux"],
       "@managers": ["src/modules/managers"],
+      "@manager-components": ["src/modules/managers/components"],
     },
   },
   "include": ["src"],

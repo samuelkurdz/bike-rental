@@ -11,7 +11,8 @@ interface UserDetailsModalInterface {
   user: User | undefined;
   closeModal: () => void;
 }
-function UserDetailsModal({
+
+export function UserDetailsModal({
   open,
   user,
   closeModal,
@@ -101,8 +102,6 @@ function UserDetailsModal({
     </Transition.Root>
   );
 }
-
-export default UserDetailsModal;
 
 function BikeTable(user: User | undefined, reserves: Reserve[], bikes: Bike[]) {
   const headerCells = ["Model", "From", "To"];
