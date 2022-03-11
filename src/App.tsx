@@ -1,10 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import UserLayout from "./modules/users/user-layout";
-
-import Login from "./modules/users/pages/user-login";
-import Signup from "./modules/users/pages/user-signup";
-
 import UserHome from "./modules/users/pages/user-home";
 
 import {
@@ -15,6 +10,7 @@ import {
   ManagerOutlet,
   ManageUsers,
 } from "@managers";
+import { Login, SignUp, UserLayout } from "@users";
 
 function App() {
   return (
@@ -25,7 +21,7 @@ function App() {
 
         <Route path="manager-login" element={<ManagerLogin />} />
         <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<SignUp />} />
 
         <Route path="app" element={<UserLayout />}>
           <Route index element={<UserHome />} />

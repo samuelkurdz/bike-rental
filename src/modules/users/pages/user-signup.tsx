@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { addUser, RootState } from "@store";
 
-function SignupForm() {
+export function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
     username: "",
     email: "",
@@ -125,7 +125,7 @@ function SignupForm() {
   );
 }
 
-function SignUp() {
+export function SignUp() {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -146,5 +146,3 @@ function SignUp() {
     </>
   );
 }
-
-export default SignUp;

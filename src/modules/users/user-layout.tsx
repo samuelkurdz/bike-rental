@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-function RoutePgeOutlet() {
+export function UserLayout() {
   return <Outlet></Outlet>;
 }
-
-export default RoutePgeOutlet;
