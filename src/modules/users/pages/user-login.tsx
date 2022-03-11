@@ -1,7 +1,7 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { RootState } from "../../../redux/store";
+import { RootState } from "@store";
 import { LoginUserPayload } from "@interfaces";
 
 function LoginForm() {

@@ -2,8 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { removeReserve } from "../../../redux/reserve-reducer";
-import { RootState } from "../../../redux/store";
+import { RootState, removeReserve } from "@store";
 import { Bike, Reserve, User } from "@interfaces";
 
 interface BikeDetailsModalInterface {

@@ -8,8 +8,7 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser } from "../../../../redux/users-reducer";
-import { RootState } from "../../../../redux/store";
+import { RootState, addUser } from "@store";
 import { NewUserForm } from "./new-user-form";
 import { CreateUserPayload } from "@interfaces";
 

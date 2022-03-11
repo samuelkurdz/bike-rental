@@ -7,9 +7,8 @@ import {
   useState,
 } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { RootState } from "../../../../redux/store";
+import { RootState, addReserve } from "@store";
 import { useSelector, useDispatch } from "react-redux";
-import { addReserve } from "../../../../redux/reserve-reducer";
 import { AddReserveForm } from "./new-reserve-form";
 import { CreateReservePayload } from "@interfaces";
 import { isFromHigherThanToDate, isDateWithInRange } from "@utils";

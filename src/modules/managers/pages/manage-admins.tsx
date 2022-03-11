@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ManagersTable from "../components/manage-admin-tables";
 import NewManager from "../components/new-manager/new-manager";
-import { RootState } from "../../../redux/store";
-import { removeManager } from "../../../redux/managers-reducer";
+import { RootState, removeManager} from "@store";
 import EditManager from '../components/edit-manager/edit-manager';
 import { Manager } from "@interfaces";
 

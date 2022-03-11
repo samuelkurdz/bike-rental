@@ -7,11 +7,10 @@ import {
   useState,
 } from "react";
 
-import { RootState } from "../../../../redux/store";
 import { EditManagerForm } from './edit-manager-form';
 import { useSelector, useDispatch } from "react-redux";
-import { updateManager } from "../../../../redux/managers-reducer";
 import { Manager } from "@interfaces";
+import { RootState, updateManager } from "@store";
 
 interface EditManagerDetailsModalInterface {
   open: boolean;

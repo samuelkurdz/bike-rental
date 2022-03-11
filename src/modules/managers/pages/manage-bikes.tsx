@@ -6,9 +6,7 @@ import NewBike from "../components/new-bike/new-bike";
 import EditBike from "../components/edit-bike/edit-bike";
 
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { removeBike } from "../../../redux/bikes-reducer";
-import { removeReserve } from "../../../redux/reserve-reducer";
+import { RootState, removeBike, removeReserve } from "@store";
 import { Bike } from "@interfaces";
 
 function ManageBikes() {

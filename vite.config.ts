@@ -12,7 +12,7 @@ export default defineConfig({
       { find: '@', replacement: path.resolve(__dirname, './src') },
       { find: '@interfaces', replacement: path.resolve(__dirname, './src/interfaces') },
       { find: '@utils', replacement: path.resolve(__dirname, './src/utils') },
-      // { find: '@views', replacement: path.resolve(__dirname, './src/views') },
+      { find: '@store', replacement: path.resolve(__dirname, './src/redux') },
       // { find: '@mixins', replacement: path.resolve(__dirname, './src/mixins') },
       // { find: '@svg', replacement: path.resolve(__dirname, './src/svg') },
       // { find: '@models', replacement: path.resolve(__dirname, './src/models') },

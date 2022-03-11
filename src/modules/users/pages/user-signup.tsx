@@ -7,8 +7,7 @@ import { CreateUserPayload } from "@interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { RootState } from "../../../redux/store";
-import { addUser } from "../../../redux/users-reducer";
+import { addUser, RootState } from "@store";
 
 function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({

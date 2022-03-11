@@ -4,7 +4,7 @@ import BikeTable from "../components/bike-table";
 import BikeTableFilter from "../components/bike-table-filter";
 import Navbar from "../components/user-navbar";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState } from "@store";
 import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
 import UserReservesDetailsModal from "../components/user-reserves-details";
 import { User, Bike, TypeInterface } from "@interfaces";
