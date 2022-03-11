@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { removeBike } from "../../../redux/bikes-reducer";
 import { removeReserve } from "../../../redux/reserve-reducer";
-import { Bike } from "../../../interfaces";
+import { Bike } from "@interfaces";
 
 function ManageBikes() {
   const [bike, setBike] = useState<Bike | undefined>(undefined);

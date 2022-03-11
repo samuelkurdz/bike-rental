@@ -6,11 +6,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { User } from "../../../../interfaces";
 import { RootState } from "../../../../redux/store";
 import { EditUserForm } from './edit-user-form';
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "../../../../redux/users-reducer";
+import { User } from "@interfaces";
 
 interface EditUserDetailsModalInterface {
   open: boolean;

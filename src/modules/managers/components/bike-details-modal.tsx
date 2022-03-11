@@ -1,9 +1,9 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { Bike, Reserve, User } from "../../../interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { Bike, Reserve, User } from "@interfaces";
 
 interface BikeDetailsModalInterface {
   open: boolean;

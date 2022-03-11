@@ -1,4 +1,5 @@
-import { Manager } from "../../../interfaces";
+import { Manager } from "@interfaces";
+
 
 interface ManagersTableProps {
   managers: Manager[];

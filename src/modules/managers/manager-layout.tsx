@@ -1,6 +1,6 @@
+import { Manager } from "@interfaces";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Manager } from "../../interfaces";
 import ManagerNavbar from "./components/manager-navbar";
 
 function ManagerOutlet() {

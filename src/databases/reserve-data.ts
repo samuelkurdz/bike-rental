@@ -1,4 +1,4 @@
-import { Reserve } from "../interfaces";
+import { Reserve } from "@interfaces";
 
 export const reserves: Reserve[] = [
   {

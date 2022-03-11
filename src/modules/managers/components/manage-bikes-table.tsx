@@ -1,4 +1,5 @@
-import { Reserve, Bike } from "../../../interfaces";
+import { Bike, Reserve } from "@interfaces";
+
 
 interface ManageBikesTableProps {
   bikes: Bike[];

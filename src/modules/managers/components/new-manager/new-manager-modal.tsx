@@ -8,10 +8,10 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { CreateManagerPayload } from "../../../../interfaces";
 import { RootState } from "../../../../redux/store";
 import { NewManagerForm } from "./new-manager-form";
 import { addManager } from "../../../../redux/managers-reducer";
+import { CreateManagerPayload } from "@interfaces";
 
 interface NewManagerModalInterface {
   open: boolean;

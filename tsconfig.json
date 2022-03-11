@@ -15,11 +15,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    // "baseUrl": "./src",
-    // "paths": {
-    //   "@interfaces": ["./interfaces"],
-    //   // "@databases": ["./hard-datas"],
-    // },
+    "baseUrl": "./",
+    "paths": {
+      "@interfaces": ["src/interfaces"],
+      "@utils": ["src/utils"],
+      // "@databases": ["./hard-datas"],
+    },
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,5 +1,5 @@
+import { CreateUserPayload } from "@interfaces";
 import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-import { CreateUserPayload } from "../../../../interfaces";
 
 interface NewUserFormInterface {
   handleSignupFormSubmit: FormEventHandler<HTMLFormElement>;

@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/store";
 import { removeUser } from "../../../redux/users-reducer";
 import EditUser from "../components/edit-user/edit-user";
 import { removeReserve } from "../../../redux/reserve-reducer";
-import { User } from "../../../interfaces";
+import { User } from "@interfaces";
 
 function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);

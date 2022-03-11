@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-import { CreateReservePayload } from "../../../../interfaces";
+import { CreateReservePayload } from "@interfaces";
 
 interface EditReserveFormInterface {
   handleFormSubmit: FormEventHandler<HTMLFormElement>;

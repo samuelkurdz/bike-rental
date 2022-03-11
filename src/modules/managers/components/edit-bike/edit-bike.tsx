@@ -6,12 +6,13 @@ import {
   useRef,
   useState,
 } from "react";
-import { Bike } from "../../../../interfaces";
+
 import { RootState } from "../../../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { updateBike } from "../../../../redux/bikes-reducer";
 
 import { EditBikeForm } from "./edit-bike-form";
+import { Bike } from "@interfaces";
 
 interface EditBikeDetailsModalInterface {
   open: boolean;

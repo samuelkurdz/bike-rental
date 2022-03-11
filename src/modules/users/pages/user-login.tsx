@@ -1,8 +1,8 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginUserPayload } from "../../../interfaces";
 import { RootState } from "../../../redux/store";
+import { LoginUserPayload } from "@interfaces";
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({

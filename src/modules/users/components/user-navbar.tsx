@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { User } from "../../../interfaces";
+import { User } from "@interfaces";
 
 interface NavbarProps {
-  user: User|undefined;
+  user: User | undefined;
   openReservesModal: () => void;
 }
 

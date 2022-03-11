@@ -1,4 +1,5 @@
-import { Reserve, User } from "../../../interfaces";
+import { User, Reserve } from "@interfaces";
+
 
 interface UsersTableProps {
   users: User[];

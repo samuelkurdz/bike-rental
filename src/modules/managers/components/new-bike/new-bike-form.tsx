@@ -1,5 +1,5 @@
+import { CreateBikePayload } from "@interfaces";
 import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-import { CreateBikePayload } from "../../../../interfaces";
 
 interface NewBikeFormInterface {
   handleFormSubmit: FormEventHandler<HTMLFormElement>;

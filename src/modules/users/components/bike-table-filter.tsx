@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { TypeInterface } from "../../../interfaces";
+import { TypeInterface } from "@interfaces";
 
 const filterOptions = [
   {

@@ -1,13 +1,12 @@
 import {
   ChangeEventHandler,
   FormEventHandler,
-  useEffect,
   useState,
 } from "react";
+import { CreateUserPayload } from "@interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { CreateUserPayload } from "../../../interfaces";
 import { RootState } from "../../../redux/store";
 import { addUser } from "../../../redux/users-reducer";
 
@@ -20,8 +19,6 @@ function SignupForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.data);
-
-  useEffect(() => {}, []);
 
   const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (
     event

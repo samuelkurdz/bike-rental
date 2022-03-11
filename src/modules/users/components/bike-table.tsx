@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
+import { Bike } from "@interfaces";
 import { RootState } from "../../../redux/store";
-import { Bike } from "../../../interfaces";
 
 interface BikeTableProps {
   bikes: Bike[];

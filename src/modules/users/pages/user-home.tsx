@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import ReserveBikeModal from "../components/reserve-bike/reserve-bike-modal";
 import UserReservesDetailsModal from "../components/user-reserves-details";
-import { isDateWithInRange } from "../../../utils/isDateWithInRange";
-import { Bike, TypeInterface, User } from "../../../interfaces";
+import { User, Bike, TypeInterface } from "@interfaces";
+import { isDateWithInRange } from "@utils";
+
 
 function UserHome() {
   const navigate = useNavigate();

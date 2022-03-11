@@ -8,10 +8,10 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { CreateBikePayload } from "../../../../interfaces";
 import { addBike } from "../../../../redux/bikes-reducer";
 import { RootState } from "../../../../redux/store";
 import { NewBikeForm } from "./new-bike-form";
+import { CreateBikePayload } from "@interfaces";
 
 interface NewbikeModalInterface {
   open: boolean;

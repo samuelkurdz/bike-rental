@@ -1,5 +1,6 @@
+import { Manager } from "@interfaces";
 import { Link, useNavigate } from "react-router-dom";
-import { Manager } from "../../../interfaces";
+
 
 interface NavProps {
   manager: Manager | undefined;

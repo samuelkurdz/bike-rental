@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginUserPayload } from "../../../interfaces/user";
+import { LoginUserPayload } from "@interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 

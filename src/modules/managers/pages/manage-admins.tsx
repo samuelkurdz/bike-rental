@@ -5,7 +5,7 @@ import NewManager from "../components/new-manager/new-manager";
 import { RootState } from "../../../redux/store";
 import { removeManager } from "../../../redux/managers-reducer";
 import EditManager from '../components/edit-manager/edit-manager';
-import { Manager } from "../../../interfaces";
+import { Manager } from "@interfaces";
 
 function ManageAdmin() {
   const dispatch = useDispatch();

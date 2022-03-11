@@ -7,12 +7,12 @@ import {
   useState,
 } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { CreateReservePayload } from "../../../../interfaces";
 import { RootState } from "../../../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { addReserve } from "../../../../redux/reserve-reducer";
 import { AddReserveForm } from "./new-reserve-form";
-import { isDateWithInRange, isFromHigherThanToDate } from "../../../../utils";
+import { CreateReservePayload } from "@interfaces";
+import { isFromHigherThanToDate, isDateWithInRange } from "@utils";
 
 interface ReserveBikeModalInterface {
   open: boolean;
