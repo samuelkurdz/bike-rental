@@ -1,55 +1,45 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useState,
-} from "react";
-import { CreateUserPayload } from "@interfaces";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { addUser, RootState } from "@store";
+import { CreateUserPayload } from '@interfaces';
+import { addUser, RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export function SignupForm() {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: '',
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.users.data);
 
-  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     SetNewUser({ ...newUser, [event.target.name]: event.target.value });
   };
 
-  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (
-    event
-  ) => {
+  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     console.log(newUser);
 
-    const isUsernameExisting = users.some(
-      (user) => user.username === newUser.username
-    );
+    const isUsernameExisting = users.some((user) => user.username === newUser.username);
     const isEmailExisting = users.some((user) => user.email === newUser.email);
     console.log(isUsernameExisting, isEmailExisting);
 
     if (isUsernameExisting) {
-      alert("username is taken");
+      alert('username is taken');
       return;
     }
     if (isEmailExisting) {
-      alert("email is taken");
+      alert('email is taken');
       return;
     }
 
     dispatch(addUser({ ...newUser, id: uuidv4() }));
-    SetNewUser({ username: "", email: "", password: "" });
+    SetNewUser({ username: '', email: '', password: '' });
     console.log(users);
-    navigate("login");
+    navigate('login');
   };
 
   return (
@@ -103,10 +93,7 @@ export function SignupForm() {
         <div className="flex items-center"></div>
 
         <div className="text-sm">
-          <Link
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-            to="/login"
-          >
+          <Link className="font-medium text-indigo-600 hover:text-indigo-500" to="/login">
             Already have an account?
           </Link>
         </div>

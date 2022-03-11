@@ -1,10 +1,9 @@
-import { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
-
-import { useSelector } from "react-redux";
-import { User, Reserve, Bike } from "@interfaces";
-import { RootState } from "@store";
+import { Dialog, Transition } from '@headlessui/react';
+import { ExclamationCircleIcon } from '@heroicons/react/outline';
+import { Bike, Reserve, User } from '@interfaces';
+import { RootState } from '@store';
+import { Fragment, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 interface UserDetailsModalInterface {
   open: boolean;
@@ -12,11 +11,7 @@ interface UserDetailsModalInterface {
   closeModal: () => void;
 }
 
-export function UserDetailsModal({
-  open,
-  user,
-  closeModal,
-}: UserDetailsModalInterface) {
+export function UserDetailsModal({ open, user, closeModal }: UserDetailsModalInterface) {
   const cancelButtonRef = useRef(null);
   const reserves = useSelector((state: RootState) => state.reserves.data);
   const bikes = useSelector((state: RootState) => state.bikes.data);
@@ -75,8 +70,7 @@ export function UserDetailsModal({
                       {user?.username} Bike Details
                     </Dialog.Title>
                     <div className="mt-2">
-                      {reserves.filter((res) => res.userId === user?.id)
-                        .length === 0 ? (
+                      {reserves.filter((res) => res.userId === user?.id).length === 0 ? (
                         <p className="text-center py-2">No Bikes Reserved</p>
                       ) : (
                         BikeTable(user, reserves, bikes)
@@ -104,7 +98,7 @@ export function UserDetailsModal({
 }
 
 function BikeTable(user: User | undefined, reserves: Reserve[], bikes: Bike[]) {
-  const headerCells = ["Model", "From", "To"];
+  const headerCells = ['Model', 'From', 'To'];
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">

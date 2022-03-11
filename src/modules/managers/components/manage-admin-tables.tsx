@@ -1,12 +1,14 @@
-import { Manager } from "@interfaces";
+import { Manager } from '@interfaces';
 
 interface ManagersTableProps {
   managers: Manager[];
+  // eslint-disable-next-line no-unused-vars
   handleEditManager: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
   handleDeleteManager: (id: string) => void;
 }
 
-const basicTableheader = ["username", "Email"];
+const basicTableheader = ['username', 'Email'];
 
 export function ManagersTable({
   managers,
@@ -44,7 +46,7 @@ export function ManagersTable({
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{email}</div>
                     </td>
-                    {email !== "kurdz@gmail.com" ? (
+                    {email !== 'kurdz@gmail.com' ? (
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <button
                           type="button"

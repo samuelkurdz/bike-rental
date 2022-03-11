@@ -1,16 +1,9 @@
-import { Transition, Dialog } from "@headlessui/react";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
-
+import { Dialog, Transition } from '@headlessui/react';
+import { Manager } from '@interfaces';
 import { EditManagerForm } from '@manager-components';
-import { useSelector, useDispatch } from "react-redux";
-import { Manager } from "@interfaces";
-import { RootState, updateManager } from "@store";
+import { RootState, updateManager } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface EditManagerDetailsModalInterface {
   open: boolean;
@@ -41,21 +34,19 @@ export function EditManager({
 
     const isManagernameExisting = managers.some(
       (manager) =>
-        manager.username === updatedManager.username &&
-        manager.id !== updatedManager.id
+        manager.username === updatedManager.username && manager.id !== updatedManager.id,
     );
     const isEmailExisting = managers.some(
       (Manager) =>
-        Manager.email === updatedManager.email &&
-        Manager.id !== updatedManager.id
+        Manager.email === updatedManager.email && Manager.id !== updatedManager.id,
     );
 
     if (isManagernameExisting) {
-      alert("Managername is taken");
+      alert('Managername is taken');
       return;
     }
     if (isEmailExisting) {
-      alert("email is taken");
+      alert('email is taken');
       return;
     }
 

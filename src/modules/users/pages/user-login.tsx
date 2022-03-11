@@ -1,13 +1,13 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { RootState } from "@store";
-import { LoginUserPayload } from "@interfaces";
+import { LoginUserPayload } from '@interfaces';
+import { RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const navigate = useNavigate();
@@ -23,14 +23,12 @@ function LoginForm() {
   const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    const userInDatabase = users.find(
-      (user) => user.email === loginPayload.email
-    );
+    const userInDatabase = users.find((user) => user.email === loginPayload.email);
     if (userInDatabase && userInDatabase.password === loginPayload.password) {
       localStorage.setItem('user', JSON.stringify(userInDatabase));
       navigate(`/app`);
     } else {
-      alert("wrong login details");
+      alert('wrong login details');
     }
   };
 
@@ -75,7 +73,7 @@ function LoginForm() {
             className="font-medium text-indigo-600 hover:text-indigo-500"
             to="/signup"
           >
-            Don't have an account?
+            Don&apos;t have an account?
           </Link>
         </div>
       </div>

@@ -1,14 +1,13 @@
-import { useState } from "react";
-
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, removeBike, removeReserve } from "@store";
-import { Bike } from "@interfaces";
+import { Bike } from '@interfaces';
 import {
-  ManageBikesTable,
   BikeDetailsModal,
-  NewBike,
   EditBike,
-} from "@manager-components";
+  ManageBikesTable,
+  NewBike,
+} from '@manager-components';
+import { removeBike, removeReserve, RootState } from '@store';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function ManageBikes() {
   const [bike, setBike] = useState<Bike | undefined>(undefined);

@@ -1,15 +1,17 @@
-import { User, Reserve } from "@interfaces";
-
+import { Reserve, User } from '@interfaces';
 
 interface UsersTableProps {
   users: User[];
   reserves: Reserve[];
+  // eslint-disable-next-line no-unused-vars
   selectUser: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
   handleDeleteUser: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
   handleEditUser: (id: string) => void;
 }
 
-const basicTableheader = ["Username", "Email", "No of Reserved Bikes"];
+const basicTableheader = ['Username', 'Email', 'No of Reserved Bikes'];
 
 export function ManageUsersTable({
   users,

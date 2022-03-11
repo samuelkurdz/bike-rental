@@ -1,16 +1,10 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { v4 as uuidv4 } from "uuid";
-import { useSelector, useDispatch } from "react-redux";;
-import { RootState, addBike } from "@store";
-import { CreateBikePayload } from "@interfaces";
-import { NewBikeForm } from "@manager-components";
+import { Dialog, Transition } from '@headlessui/react';
+import { CreateBikePayload } from '@interfaces';
+import { NewBikeForm } from '@manager-components';
+import { addBike, RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 interface NewbikeModalInterface {
   open: boolean;
@@ -19,9 +13,9 @@ interface NewbikeModalInterface {
 
 export function NewBikeModal({ open, closeModal }: NewbikeModalInterface) {
   const [newBike, SetNewbike] = useState<CreateBikePayload>({
-    model: "",
-    color: "",
-    location: "",
+    model: '',
+    color: '',
+    location: '',
   });
 
   const bikes = useSelector((state: RootState) => state.bikes.data);
@@ -35,12 +29,10 @@ export function NewBikeModal({ open, closeModal }: NewbikeModalInterface) {
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const isbikeModelExisting = bikes.some(
-      (bike) => bike.model === newBike.model
-    );
+    const isbikeModelExisting = bikes.some((bike) => bike.model === newBike.model);
 
     if (isbikeModelExisting) {
-      alert("model already exists");
+      alert('model already exists');
       return;
     }
 
@@ -49,12 +41,12 @@ export function NewBikeModal({ open, closeModal }: NewbikeModalInterface) {
         ...newBike,
         id: uuidv4(),
         isAvailable: true,
-      })
+      }),
     );
     SetNewbike({
-      model: "",
-      color: "",
-      location: "",
+      model: '',
+      color: '',
+      location: '',
     });
     closeModal();
   };

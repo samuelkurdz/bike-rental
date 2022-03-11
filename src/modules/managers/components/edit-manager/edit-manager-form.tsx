@@ -1,6 +1,5 @@
-import { CreateManagerPayload } from "@interfaces";
-import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-
+import { CreateManagerPayload } from '@interfaces';
+import { ChangeEventHandler, FormEventHandler, LegacyRef } from 'react';
 
 interface EditManagerFormInterface {
   handleFormSubmit: FormEventHandler<HTMLFormElement>;

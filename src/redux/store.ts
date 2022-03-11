@@ -1,26 +1,26 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import userReducer from './users-reducer';
 import bikeReducer from './bikes-reducer';
 import managerReducer from './managers-reducer';
 import reserveReducer from './reserve-reducer';
+import userReducer from './users-reducer';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-}
+};
 
 const reducers = combineReducers({
   users: userReducer,

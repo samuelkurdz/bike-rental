@@ -1,17 +1,11 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Transition, Dialog } from "@headlessui/react";
-import { v4 as uuidv4 } from "uuid";
-import { RootState, addReserve } from "@store";
-import { AddReserveForm } from "@user-components";
-import { CreateReservePayload } from "@interfaces";
-import { isFromHigherThanToDate, isDateWithInRange } from "@utils";
+import { Dialog, Transition } from '@headlessui/react';
+import { CreateReservePayload } from '@interfaces';
+import { addReserve, RootState } from '@store';
+import { AddReserveForm } from '@user-components';
+import { isDateWithInRange, isFromHigherThanToDate } from '@utils';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 interface ReserveBikeModalInterface {
   open: boolean;
@@ -29,8 +23,8 @@ export function ReserveBikeModal({
   const [newReserve, SetNewReserve] = useState<CreateReservePayload>({
     bikeId: bikeToReserveId,
     userId: userId,
-    fromPeriod: "",
-    toPeriod: "",
+    fromPeriod: '',
+    toPeriod: '',
     rating: 5,
   });
 
@@ -38,7 +32,7 @@ export function ReserveBikeModal({
   const cancelButtonRef = useRef(null);
   const reserves = useSelector((state: RootState) => state.reserves.data);
   const bike = useSelector((state: RootState) => state.bikes.data).find(
-    (bike) => bike.id === bikeToReserveId
+    (bike) => bike.id === bikeToReserveId,
   );
 
   const handleFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -50,41 +44,33 @@ export function ReserveBikeModal({
 
     const isDateRangeInvalid = isFromHigherThanToDate(
       newReserve.fromPeriod,
-      newReserve.toPeriod
+      newReserve.toPeriod,
     );
 
     if (isDateRangeInvalid) {
-      alert("From-Date cannnot be later than To-Date");
+      alert('From-Date cannnot be later than To-Date');
       return;
     }
 
     const isBikeTakenOnThisFromDate = reserves.some(
       (reserve) =>
         reserve.bikeId === newReserve.bikeId &&
-        isDateWithInRange(
-          reserve.fromPeriod,
-          reserve.toPeriod,
-          newReserve.fromPeriod
-        )
+        isDateWithInRange(reserve.fromPeriod, reserve.toPeriod, newReserve.fromPeriod),
     );
 
     const isBikeTakenOnThistoDate = reserves.some(
       (reserve) =>
         reserve.bikeId === newReserve.bikeId &&
-        isDateWithInRange(
-          reserve.fromPeriod,
-          reserve.toPeriod,
-          newReserve.toPeriod
-        )
+        isDateWithInRange(reserve.fromPeriod, reserve.toPeriod, newReserve.toPeriod),
     );
 
     if (isBikeTakenOnThisFromDate) {
-      alert("Bike is not available on this from date");
+      alert('Bike is not available on this from date');
       return;
     }
 
     if (isBikeTakenOnThistoDate) {
-      alert("Bike is not available on this to date");
+      alert('Bike is not available on this to date');
       return;
     }
     dispatch(addReserve({ ...newReserve, id: uuidv4() }));

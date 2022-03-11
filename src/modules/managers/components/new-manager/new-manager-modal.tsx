@@ -1,16 +1,10 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { v4 as uuidv4 } from "uuid";
-import { useSelector, useDispatch } from "react-redux";
-import { CreateManagerPayload } from "@interfaces";
-import { addManager, RootState } from "@store";
-import { NewManagerForm } from "@manager-components";
+import { Dialog, Transition } from '@headlessui/react';
+import { CreateManagerPayload } from '@interfaces';
+import { NewManagerForm } from '@manager-components';
+import { addManager, RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 interface NewManagerModalInterface {
   open: boolean;
@@ -19,9 +13,9 @@ interface NewManagerModalInterface {
 
 export function NewManagerModal({ open, closeModal }: NewManagerModalInterface) {
   const [newManager, SetNewManager] = useState<CreateManagerPayload>({
-    email: "",
-    username: "",
-    password: "",
+    email: '',
+    username: '',
+    password: '',
   });
 
   const managers = useSelector((state: RootState) => state.managers.data);
@@ -36,23 +30,23 @@ export function NewManagerModal({ open, closeModal }: NewManagerModalInterface) 
     event.preventDefault();
 
     const isUsernameExisting = managers.some(
-      (manager) => manager.username === newManager.username
+      (manager) => manager.username === newManager.username,
     );
     const isEmailExisting = managers.some(
-      (manager) => manager.email === newManager.email
+      (manager) => manager.email === newManager.email,
     );
 
     if (isUsernameExisting) {
-      alert("username is taken");
+      alert('username is taken');
       return;
     }
     if (isEmailExisting) {
-      alert("email is taken");
+      alert('email is taken');
       return;
     }
 
     dispatch(addManager({ ...newManager, id: uuidv4() }));
-    SetNewManager({ username: "", email: "", password: "" });
+    SetNewManager({ username: '', email: '', password: '' });
     closeModal();
   };
 

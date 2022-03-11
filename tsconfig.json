@@ -24,8 +24,8 @@
       "@managers": ["src/modules/managers"],
       "@manager-components": ["src/modules/managers/components"],
       "@users": ["src/modules/users"],
-      "@user-components": ["src/modules/users/components"],
-    },
+      "@user-components": ["src/modules/users/components"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

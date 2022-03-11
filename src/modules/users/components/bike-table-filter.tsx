@@ -1,35 +1,32 @@
-import {
-  ChangeEventHandler,
-  Dispatch,
-  Fragment,
-  SetStateAction,
-  useState,
-} from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { TypeInterface } from "@interfaces";
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import { TypeInterface } from '@interfaces';
+import { ChangeEventHandler, Dispatch, Fragment, SetStateAction, useState } from 'react';
 
 const filterOptions = [
   {
-    name: "model",
+    name: 'model',
   },
   {
-    name: "color",
+    name: 'color',
   },
   {
-    name: "location",
+    name: 'location',
   },
   {
-    name: "rating",
+    name: 'rating',
   },
 ];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 interface FilterInterface {
+  // eslint-disable-next-line no-unused-vars
   getFilterByValue: (value: string) => void;
+  // eslint-disable-next-line no-unused-vars
   getFilterByAvailableDate: (value: string) => void;
+  // eslint-disable-next-line no-unused-vars
   getFilterByType: (value: TypeInterface) => void;
 }
 
@@ -39,27 +36,22 @@ export function BikeTableFilter({
   getFilterByAvailableDate,
 }: FilterInterface) {
   const [selected, setSelected] = useState(filterOptions[3]);
-  const [filterByValue, SetFilterByValue] = useState("");
-  const [filterByAvailableDate, SetFilterByAvailableDate] = useState("");
+  const [filterByValue, SetFilterByValue] = useState('');
+  const [filterByAvailableDate, SetFilterByAvailableDate] = useState('');
 
-  const handleFilterInputChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-
+  const handleFilterInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.value.trim()) {
-      SetFilterByAvailableDate("");
-      getFilterByAvailableDate("");
+      SetFilterByAvailableDate('');
+      getFilterByAvailableDate('');
     }
     SetFilterByValue(event.currentTarget.value);
     getFilterByValue(event.currentTarget.value);
   };
 
-  const handleFilterAvailableDate: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleFilterAvailableDate: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.value.trim()) {
-      SetFilterByValue("");
-      getFilterByValue("");
+      SetFilterByValue('');
+      getFilterByValue('');
     }
     SetFilterByAvailableDate(event.currentTarget.value);
     getFilterByAvailableDate(event.currentTarget.value);
@@ -103,6 +95,7 @@ interface FilterOptionsMenuInterface {
       name: string;
     }>
   >;
+  // eslint-disable-next-line no-unused-vars
   getFilterByType: (value: TypeInterface) => void;
 }
 
@@ -118,7 +111,7 @@ function FilterOptionsMenu({
 
   return (
     <Listbox
-      as={"div"}
+      as={'div'}
       className="flex items-center gap-4 w-full md:w-max"
       value={selected}
       onChange={(value) => handleFilterTypeChange(value)}
@@ -134,10 +127,7 @@ function FilterOptionsMenu({
                 <span className="ml-3 block truncate">{selected.name}</span>
               </span>
               <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <SelectorIcon
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
+                <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
               </span>
             </Listbox.Button>
 
@@ -154,8 +144,8 @@ function FilterOptionsMenu({
                     key={filterOption.name}
                     className={({ active }) =>
                       classNames(
-                        active ? "text-white bg-indigo-600" : "text-gray-900",
-                        "cursor-default select-none relative py-2 pl-3 pr-9"
+                        active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                        'cursor-default select-none relative py-2 pl-3 pr-9',
                       )
                     }
                     value={filterOption}
@@ -165,8 +155,8 @@ function FilterOptionsMenu({
                         <div className="flex items-center">
                           <span
                             className={classNames(
-                              selected ? "font-semibold" : "font-normal",
-                              "ml-3 block truncate"
+                              selected ? 'font-semibold' : 'font-normal',
+                              'ml-3 block truncate',
                             )}
                           >
                             {filterOption.name}
@@ -176,8 +166,8 @@ function FilterOptionsMenu({
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? "text-white" : "text-indigo-600",
-                              "absolute inset-y-0 right-0 flex items-center pr-4"
+                              active ? 'text-white' : 'text-indigo-600',
+                              'absolute inset-y-0 right-0 flex items-center pr-4',
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />

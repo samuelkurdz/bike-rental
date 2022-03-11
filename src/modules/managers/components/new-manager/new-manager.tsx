@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { PlusIcon } from "@heroicons/react/solid";
-import { NewManagerModal } from "@manager-components";
+import { PlusIcon } from '@heroicons/react/solid';
+import { NewManagerModal } from '@manager-components';
+import { useState } from 'react';
 
 export function NewManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);

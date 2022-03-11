@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, removeUser, removeReserve } from "@store";
-import { User } from "@interfaces";
+import { User } from '@interfaces';
 import {
-  UserDetailsModal,
+  EditUser,
   ManageUsersTable,
   NewUser,
-  EditUser
-} from "@manager-components";
+  UserDetailsModal,
+} from '@manager-components';
+import { removeReserve, removeUser, RootState } from '@store';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function ManageUsers() {
   const [userDetail, toggleUserDetailState] = useState(false);

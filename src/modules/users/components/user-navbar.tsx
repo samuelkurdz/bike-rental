@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { User } from "@interfaces";
+import { User } from '@interfaces';
+import { useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
   user: User | undefined;
@@ -9,7 +9,7 @@ interface NavbarProps {
 export function Navbar({ openReservesModal, user }: NavbarProps) {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     navigate(`/`);
   };
 

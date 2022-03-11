@@ -1,4 +1,8 @@
-export const isDateWithInRange = (fromPeriod: string, toPeriod: string, checkPeriod: string) => {
+export const isDateWithInRange = (
+  fromPeriod: string,
+  toPeriod: string,
+  checkPeriod: string,
+) => {
   let fromDate = Date.parse(fromPeriod);
   let toDate = Date.parse(toPeriod);
   let checkDate = Date.parse(checkPeriod);

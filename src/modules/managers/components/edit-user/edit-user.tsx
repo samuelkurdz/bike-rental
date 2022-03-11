@@ -1,15 +1,9 @@
-import { Transition, Dialog } from "@headlessui/react";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
+import { Dialog, Transition } from '@headlessui/react';
+import { User } from '@interfaces';
 import { EditUserForm } from '@manager-components';
-import { useSelector, useDispatch } from "react-redux";
-import { User } from "@interfaces";
-import { RootState, updateUser } from "@store";
+import { RootState, updateUser } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface EditUserDetailsModalInterface {
   open: boolean;
@@ -32,19 +26,18 @@ export function EditUser({ closeModal, user, open }: EditUserDetailsModalInterfa
     event.preventDefault();
 
     const isUsernameExisting = users.some(
-      (user) =>
-        user.username === updatedUser.username && user.id !== updatedUser.id
+      (user) => user.username === updatedUser.username && user.id !== updatedUser.id,
     );
     const isEmailExisting = users.some(
-      (user) => user.email === updatedUser.email && user.id !== updatedUser.id
+      (user) => user.email === updatedUser.email && user.id !== updatedUser.id,
     );
 
     if (isUsernameExisting) {
-      alert("username is taken");
+      alert('username is taken');
       return;
     }
     if (isEmailExisting) {
-      alert("email is taken");
+      alert('email is taken');
       return;
     }
 

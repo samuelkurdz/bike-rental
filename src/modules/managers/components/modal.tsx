@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationIcon } from "@heroicons/react/outline";
+import { Dialog, Transition } from '@headlessui/react';
+import { ExclamationIcon } from '@heroicons/react/outline';
+import { Fragment, useRef, useState } from 'react';
 
 function Modal() {
   const [open, setOpen] = useState(true);
@@ -63,9 +63,8 @@ function Modal() {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to deactivate your account? All of
-                        your data will be permanently removed. This action
-                        cannot be undone.
+                        Are you sure you want to deactivate your account? All of your data
+                        will be permanently removed. This action cannot be undone.
                       </p>
                     </div>
                   </div>

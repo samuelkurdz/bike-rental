@@ -1,7 +1,3 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-
-import UserHome from "./modules/users/pages/user-home";
-
 import {
   ManageAdmins,
   ManageBikes,
@@ -9,8 +5,11 @@ import {
   ManagerLogin,
   ManagerOutlet,
   ManageUsers,
-} from "@managers";
-import { Login, SignUp, UserLayout } from "@users";
+} from '@managers';
+import { Login, SignUp, UserLayout } from '@users';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import UserHome from './modules/users/pages/user-home';
 
 function App() {
   return (

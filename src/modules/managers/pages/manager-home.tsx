@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { RootState } from "@store";
+import { RootState } from '@store';
+import { useSelector } from 'react-redux';
 
 export function ManagerHome() {
   const bikes = useSelector((state: RootState) => state.bikes.data);

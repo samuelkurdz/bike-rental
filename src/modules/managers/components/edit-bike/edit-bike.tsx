@@ -1,17 +1,10 @@
-import { Transition, Dialog } from "@headlessui/react";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
+import { Dialog, Transition } from '@headlessui/react';
+import { Bike } from '@interfaces';
+import { RootState, updateBike } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useSelector, useDispatch } from "react-redux";
-
-import { EditBikeForm } from "./edit-bike-form";
-import { Bike } from "@interfaces";
-import { RootState, updateBike } from "@store";
+import { EditBikeForm } from './edit-bike-form';
 
 interface EditBikeDetailsModalInterface {
   open: boolean;
@@ -34,11 +27,11 @@ export function EditBike({ closeModal, bike, open }: EditBikeDetailsModalInterfa
     event.preventDefault();
 
     const isBikeModelExisting = Bikes.some(
-      (Bike) => Bike.model === updatedBike.model && Bike.id !== updatedBike.id
+      (Bike) => Bike.model === updatedBike.model && Bike.id !== updatedBike.id,
     );
 
     if (isBikeModelExisting) {
-      alert("Bike model is taken");
+      alert('Bike model is taken');
       return;
     }
 

@@ -1,16 +1,10 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  Fragment,
-  useRef,
-  useState,
-} from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { v4 as uuidv4 } from "uuid";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, addUser } from "@store";
-import { NewUserForm } from "@manager-components";
-import { CreateUserPayload } from "@interfaces";
+import { Dialog, Transition } from '@headlessui/react';
+import { CreateUserPayload } from '@interfaces';
+import { NewUserForm } from '@manager-components';
+import { addUser, RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, Fragment, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 interface NewuserModalInterface {
   open: boolean;
@@ -19,42 +13,36 @@ interface NewuserModalInterface {
 
 export function NewUserModal({ open, closeModal }: NewuserModalInterface) {
   const [newUser, SetNewUser] = useState<CreateUserPayload>({
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: '',
   });
 
   const users = useSelector((state: RootState) => state.users.data);
   const dispatch = useDispatch();
   const cancelButtonRef = useRef(null);
 
-  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleSignUpFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     SetNewUser({ ...newUser, [event.target.name]: event.target.value });
   };
 
-  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (
-    event
-  ) => {
+  const handleSignupFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    const isUsernameExisting = users.some(
-      (user) => user.username === newUser.username
-    );
+    const isUsernameExisting = users.some((user) => user.username === newUser.username);
     const isEmailExisting = users.some((user) => user.email === newUser.email);
 
     if (isUsernameExisting) {
-      alert("username is taken");
+      alert('username is taken');
       return;
     }
     if (isEmailExisting) {
-      alert("email is taken");
+      alert('email is taken');
       return;
     }
 
     dispatch(addUser({ ...newUser, id: uuidv4() }));
-    SetNewUser({ username: "", email: "", password: "" });
+    SetNewUser({ username: '', email: '', password: '' });
     closeModal();
   };
 

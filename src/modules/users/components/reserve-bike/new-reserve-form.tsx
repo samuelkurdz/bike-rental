@@ -1,5 +1,5 @@
-import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-import { CreateReservePayload } from "@interfaces";
+import { CreateReservePayload } from '@interfaces';
+import { ChangeEventHandler, FormEventHandler, LegacyRef } from 'react';
 
 interface EditReserveFormInterface {
   handleFormSubmit: FormEventHandler<HTMLFormElement>;
@@ -26,7 +26,6 @@ export function AddReserveForm({
             name="fromPeriod"
             type="date"
             id="fromPeriod"
-            autoComplete="fromPeriod"
             placeholder="fromPeriod"
             value={newReserve.fromPeriod}
             onChange={handleFormChange}
@@ -40,7 +39,6 @@ export function AddReserveForm({
             name="toPeriod"
             type="date"
             id="toPeriod"
-            autoComplete="toPeriod"
             placeholder="toPeriod"
             value={newReserve.toPeriod}
             onChange={handleFormChange}

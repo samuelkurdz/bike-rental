@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
-import { Bike } from "@interfaces";
-import { RootState } from "@store";
+import { Bike } from '@interfaces';
+import { RootState } from '@store';
+import { useSelector } from 'react-redux';
 
 interface BikeTableProps {
   bikes: Bike[];
+  // eslint-disable-next-line no-unused-vars
   openNewReserveModal: (bikeId: string) => void;
 }
 
-const basicTableheader = ["model", "color", "location", "rating"];
+const basicTableheader = ['model', 'color', 'location', 'rating'];
 
 export function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
   const reserves = useSelector((state: RootState) => state.reserves.data);
@@ -34,7 +35,7 @@ export function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {bikes.map(({ model, color, location, id, isAvailable }) => (
+                {bikes.map(({ model, color, location, id }) => (
                   <tr key={id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{model}</div>
@@ -46,13 +47,11 @@ export function BikeTable({ bikes, openNewReserveModal }: BikeTableProps) {
                       {location}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {reserves.filter((reserve) => reserve.bikeId === id)
-                        .length
+                      {reserves.filter((reserve) => reserve.bikeId === id).length
                         ? reserves
                             .filter((reserve) => reserve.bikeId === id)
                             .reduce((sum, reserve) => sum + reserve.rating, 0) /
-                          reserves.filter((reserve) => reserve.bikeId === id)
-                            .length
+                          reserves.filter((reserve) => reserve.bikeId === id).length
                         : 0}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

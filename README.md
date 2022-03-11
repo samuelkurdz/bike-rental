@@ -1,6 +1,5 @@
 # [Bike Rentals Project](https://bikerentals.netlify.app/)
 
-
 ## How to Use
 
 ### As a User
@@ -32,8 +31,8 @@
 - email: kurdz@gmail.com, password: qwerty (master admin: can neither be edited nor deleted)
 - email: green@gmail.com, password: qwerty
 
-
 ### Project Setup
+
 - Built with React, TypeScript, Vite, Redux Toolkit
 - Routing with React-Router-Dom (v6)
 - Styled with TailwindCSS
@@ -41,6 +40,7 @@
 - App hosted on Netlify
 
 ## The requirements for the test project are:
+
 ### Write an application to manage bike rentals:
 
 - The application must be React-based.

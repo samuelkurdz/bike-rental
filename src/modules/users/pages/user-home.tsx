@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@store";
-import { User, Bike, TypeInterface } from "@interfaces";
-import { isDateWithInRange } from "@utils";
+import { Bike, TypeInterface, User } from '@interfaces';
+import { RootState } from '@store';
 import {
-  Navbar,
-  BikeTableFilter,
   BikeTable,
+  BikeTableFilter,
+  Navbar,
   ReserveBikeModal,
   UserReservesDetailsModal,
-} from "@user-components";
+} from '@user-components';
+import { isDateWithInRange } from '@utils';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function UserHome() {
   const navigate = useNavigate();
@@ -19,19 +19,20 @@ function UserHome() {
   const reserves = useSelector((state: RootState) => state.reserves.data);
 
   const [filteredBikes, SetFilteredBikes] = useState<Bike[]>(bikes);
-  const [filterByValue, SetFilterByValue] = useState("");
-  const [filterByAvailableDate, SetFilterByAvailableDate] = useState("");
+  const [filterByValue, SetFilterByValue] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [filterByAvailableDate, SetFilterByAvailableDate] = useState('');
   const [filterByType, SetFilterByType] = useState<TypeInterface>({
-    name: "rating",
+    name: 'rating',
   });
 
   const [isNewReserveModalOpen, toggelNewReserveModal] = useState(false);
-  const [bikeToReserveId, SetBikeToReserveId] = useState("");
+  const [bikeToReserveId, SetBikeToReserveId] = useState('');
 
   const [shouldOpenReservesModal, SetShouldOpenReservesModal] = useState(false);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
+    const loggedInUser = localStorage.getItem('user');
 
     if (!loggedInUser) {
       navigate(`/login`);
@@ -49,12 +50,10 @@ function UserHome() {
       reserves
         .filter((reserve) => reserve.bikeId === bike.id)
         .some((resBike) =>
-          isDateWithInRange(resBike.fromPeriod, resBike.toPeriod, value)
-        )
+          isDateWithInRange(resBike.fromPeriod, resBike.toPeriod, value),
+        ),
     );
-    const availableBikes = bikes.filter(
-      (bike) => !nonAvailableBikes.includes(bike)
-    );
+    const availableBikes = bikes.filter((bike) => !nonAvailableBikes.includes(bike));
     SetFilteredBikes(availableBikes);
   };
 
@@ -81,18 +80,18 @@ function UserHome() {
     let newFilteredBikes: Bike[] = [];
     const filterType = filterByType.name;
 
-    if (filterType === "rating") {
+    if (filterType === 'rating') {
       newFilteredBikes = bikes.filter(
         (bike) =>
           +filterValue ===
           reserves
             .filter((reserve) => reserve.bikeId === bike.id)
             .reduce((sum, reserve) => sum + reserve.rating, 0) /
-            reserves.filter((reserve) => reserve.bikeId === bike.id).length
+            reserves.filter((reserve) => reserve.bikeId === bike.id).length,
       );
     } else {
       newFilteredBikes = bikes.filter((bike) =>
-        bike[filterType].toLowerCase().includes(filterValue.toLowerCase())
+        bike[filterType].toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
     SetFilteredBikes(newFilteredBikes);
@@ -100,7 +99,7 @@ function UserHome() {
 
   const closeNewReserveModal = () => {
     toggelNewReserveModal(false);
-    SetBikeToReserveId("");
+    SetBikeToReserveId('');
   };
 
   const openNewReserveModal = (bikeId: string) => {
@@ -123,10 +122,7 @@ function UserHome() {
         getFilterByValue={getFilterByValue}
         getFilterByAvailableDate={getFilterByAvailableDate}
       />
-      <BikeTable
-        bikes={filteredBikes}
-        openNewReserveModal={openNewReserveModal}
-      />
+      <BikeTable bikes={filteredBikes} openNewReserveModal={openNewReserveModal} />
       {bikeToReserveId.trim() && loggedInUser?.id ? (
         <ReserveBikeModal
           userId={loggedInUser?.id}

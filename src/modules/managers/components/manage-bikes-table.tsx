@@ -1,21 +1,17 @@
-import { Bike, Reserve } from "@interfaces";
-
+import { Bike, Reserve } from '@interfaces';
 
 interface ManageBikesTableProps {
   bikes: Bike[];
   reserves: Reserve[];
+  // eslint-disable-next-line no-unused-vars
   selectBike: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
   handleDeleteBike: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
   handleEditBike: (id: string) => void;
 }
 
-const basicTableheader = [
-  "model",
-  "color",
-  "location",
-  "No of Users",
-  "rating",
-];
+const basicTableheader = ['model', 'color', 'location', 'No of Users', 'rating'];
 
 export function ManageBikesTable({
   bikes,
@@ -70,14 +66,12 @@ export function ManageBikesTable({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {reserves.filter((reserve) => reserve.bikeId === id)
-                        .length
-                        ? reserves
-                            .filter((reserve) => reserve.bikeId === id)
-                            .reduce((sum, reserve) => sum + reserve.rating, 0) /
-                          reserves.filter((reserve) => reserve.bikeId === id)
-                            .length
-                        : 0}
+                        {reserves.filter((reserve) => reserve.bikeId === id).length
+                          ? reserves
+                              .filter((reserve) => reserve.bikeId === id)
+                              .reduce((sum, reserve) => sum + reserve.rating, 0) /
+                            reserves.filter((reserve) => reserve.bikeId === id).length
+                          : 0}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -106,4 +100,3 @@ export function ManageBikesTable({
     </div>
   );
 }
-

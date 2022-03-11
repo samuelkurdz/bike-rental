@@ -1,6 +1,5 @@
-import { CreateBikePayload } from "@interfaces";
-import { ChangeEventHandler, FormEventHandler, LegacyRef } from "react";
-
+import { CreateBikePayload } from '@interfaces';
+import { ChangeEventHandler, FormEventHandler, LegacyRef } from 'react';
 
 interface EditBikeFormInterface {
   handleFormSubmit: FormEventHandler<HTMLFormElement>;
@@ -27,7 +26,6 @@ export function EditBikeForm({
             name="model"
             type="text"
             id="model"
-            autoComplete="model"
             placeholder="Model"
             value={updatedBike.model}
             onChange={handleFormChange}
@@ -41,7 +39,6 @@ export function EditBikeForm({
             name="location"
             type="text"
             id="location"
-            autoComplete="location"
             placeholder="Location"
             value={updatedBike.location}
             onChange={handleFormChange}

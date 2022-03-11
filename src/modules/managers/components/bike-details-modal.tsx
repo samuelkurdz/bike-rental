@@ -1,9 +1,9 @@
-import { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { useSelector } from "react-redux";
-import { Bike, Reserve, User } from "@interfaces";
-import { RootState } from "@store";
+import { Dialog, Transition } from '@headlessui/react';
+import { ExclamationCircleIcon } from '@heroicons/react/outline';
+import { Bike, Reserve, User } from '@interfaces';
+import { RootState } from '@store';
+import { Fragment, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 interface BikeDetailsModalInterface {
   open: boolean;
@@ -11,11 +11,7 @@ interface BikeDetailsModalInterface {
   closeModal: () => void;
 }
 
-export function BikeDetailsModal({
-  open,
-  bike,
-  closeModal,
-}: BikeDetailsModalInterface) {
+export function BikeDetailsModal({ open, bike, closeModal }: BikeDetailsModalInterface) {
   const cancelButtonRef = useRef(null);
   const reserves = useSelector((state: RootState) => state.reserves.data);
   const users = useSelector((state: RootState) => state.users.data);
@@ -74,8 +70,7 @@ export function BikeDetailsModal({
                       {bike?.model} Users Details
                     </Dialog.Title>
                     <div className="mt-2">
-                      {reserves.filter((res) => res.bikeId === bike?.id)
-                        .length === 0 ? (
+                      {reserves.filter((res) => res.bikeId === bike?.id).length === 0 ? (
                         <p className="text-center py-2">
                           {bike?.model} has no reservation
                         </p>
@@ -104,12 +99,8 @@ export function BikeDetailsModal({
   );
 }
 
-function UsersTable(
-  bike: Bike | undefined,
-  reserves: Reserve[],
-  users: User[]
-) {
-  const headerCells = ["Username", "From", "To"];
+function UsersTable(bike: Bike | undefined, reserves: Reserve[], users: User[]) {
+  const headerCells = ['Username', 'From', 'To'];
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -133,10 +124,7 @@ function UsersTable(
               <tr key={id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900">
-                    {
-                      users.find((user: { id: string }) => user.id === userId)
-                        ?.username
-                    }
+                    {users.find((user: { id: string }) => user.id === userId)?.username}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">

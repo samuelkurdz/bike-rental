@@ -1,9 +1,9 @@
-import { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, removeReserve } from "@store";
-import { Bike, Reserve, User } from "@interfaces";
+import { Dialog, Transition } from '@headlessui/react';
+import { ExclamationCircleIcon } from '@heroicons/react/outline';
+import { Bike, Reserve, User } from '@interfaces';
+import { removeReserve, RootState } from '@store';
+import { Fragment, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface BikeDetailsModalInterface {
   open: boolean;
@@ -73,8 +73,7 @@ export function UserReservesDetailsModal({
                       {user.username} Reserved Bikes
                     </Dialog.Title>
                     <div className="mt-2">
-                      {reserves.filter((res) => res.userId === user.id)
-                        .length === 0 ? (
+                      {reserves.filter((res) => res.userId === user.id).length === 0 ? (
                         <p className="text-center py-2">No Bikes Reserved</p>
                       ) : (
                         BikeTable(user, reserves, bikes)
@@ -101,9 +100,8 @@ export function UserReservesDetailsModal({
   );
 }
 
-
 function BikeTable(user: User, reserves: Reserve[], bikes: Bike[]) {
-  const headerCells = ["Model", "From", "To"];
+  const headerCells = ['Model', 'From', 'To'];
   const dispatch = useDispatch();
 
   const handleDeleteReservation = (reservationId: string) => {

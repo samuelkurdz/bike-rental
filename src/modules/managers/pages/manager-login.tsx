@@ -1,42 +1,35 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LoginUserPayload } from "@interfaces";
-import { useSelector } from "react-redux";
-import { RootState } from "@store";
+import { LoginUserPayload } from '@interfaces';
+import { RootState } from '@store';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [loginPayload, SetLoginPayload] = useState<LoginUserPayload>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const navigate = useNavigate();
   const managers = useSelector((state: RootState) => state.managers.data);
 
-  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleLoginFormChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     SetLoginPayload({
       ...loginPayload,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = async (
-    event
-  ) => {
+  const handleLoginFormSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     const managerInDatabase = managers.find(
-      (manager) => manager.email === loginPayload.email
+      (manager) => manager.email === loginPayload.email,
     );
 
-    if (
-      managerInDatabase &&
-      managerInDatabase.password === loginPayload.password
-    ) {
-      localStorage.setItem("manager", JSON.stringify(managerInDatabase));
+    if (managerInDatabase && managerInDatabase.password === loginPayload.password) {
+      localStorage.setItem('manager', JSON.stringify(managerInDatabase));
       navigate(`/manager`);
     } else {
-      alert("wrong login details");
+      alert('wrong login details');
     }
   };
 

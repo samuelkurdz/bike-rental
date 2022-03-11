@@ -1,15 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Manager } from "@interfaces";
-
+import { Manager } from '@interfaces';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface NavProps {
   manager: Manager | undefined;
 }
 
-export function ManagerNavbar({manager}: NavProps) {
+export function ManagerNavbar({ manager }: NavProps) {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("manager");
+    localStorage.removeItem('manager');
     navigate(`/manager-login`);
   };
   return (
@@ -26,28 +25,32 @@ export function ManagerNavbar({manager}: NavProps) {
             </div>
           </div>
           <div className="flex space-x-4">
-            <Link to="/manager/users"
+            <Link
+              to="/manager/users"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Users
             </Link>
-            <Link to="/manager/bikes"
+            <Link
+              to="/manager/bikes"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Bikes
             </Link>
-            <Link to="/manager/admins"
+            <Link
+              to="/manager/admins"
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Managers
             </Link>
             <button
-            onClick={handleLogout}
+              onClick={handleLogout}
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Logout
             </button>
-            <Link to="/manager"
+            <Link
+              to="/manager"
               className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Welcome, {manager?.username}
